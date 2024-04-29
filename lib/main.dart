@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:progresstrackerapp/authorization_form_screen.dart';
 import 'package:progresstrackerapp/change_password_screen.dart';
+import 'package:progresstrackerapp/edit_profile_screen.dart';
 import 'package:progresstrackerapp/home_screen_unauthorized_user.dart';
 import 'package:progresstrackerapp/individual_home_authorized_user_screen.dart';
 import 'package:progresstrackerapp/loading_app_screen.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         '/ChangePasswordFormScreen':(context) => const ChangePasswordFormScreen(),
         '/IndividualHomeScreenAuthorizedUser':(context) => const IndividualHomeScreenAuthorizedUser(),
         '/PersonalInformationUserScreen':(context) => const PersonalInformationUserScreen(),
+        '/EditProfileScreen':(context) => const EditProfileScreen(),
 
 
       },

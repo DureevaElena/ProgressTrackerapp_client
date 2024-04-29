@@ -41,7 +41,7 @@ class PersonalInformationUserScreen extends StatelessWidget {
             Align(alignment: Alignment.bottomCenter,
               child: TextButton(
                 onPressed: () {
-                  //Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
+                Navigator.pushNamed(context, '/EditProfileScreen');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
