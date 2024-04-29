@@ -10,7 +10,7 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
         toolbarHeight: 100,
         leading: IconButton(
           onPressed: (){
-            Navigator.pop(context);
+            Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
         }, icon: const Icon(
           Icons.arrow_back,
           color: Colors.black ,
@@ -38,7 +38,7 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    //Navigator.pushNamed(context, '/ViewingCreatedGoalScreen');
+                    //Navigator.pushNamed(context, '/EditGoalScreen');
                   },
                   child: const Text(
                       'Описание',
@@ -50,7 +50,8 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
                   ),
                 TextButton(
                   onPressed: () {
-                    // Переход на Этапы
+                    
+                    Navigator.pushNamed(context, '/ViewGoalStagesScreen');
                   },
                   child: const Text(
                     'Этапы',
@@ -134,8 +135,6 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
             ),
 
             SizedBox(height: 50,),
-
-            //ДОБАВИТЬ СТАТУС ЦЕЛИ
            
             Expanded(
               child: Align(
