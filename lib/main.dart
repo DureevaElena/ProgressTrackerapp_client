@@ -5,6 +5,7 @@ import 'package:progresstrackerapp/create_goal_screen.dart';
 import 'package:progresstrackerapp/create_goal_stages_screen.dart';
 import 'package:progresstrackerapp/current_goals_screen.dart';
 import 'package:progresstrackerapp/edit_goal_screen.dart';
+import 'package:progresstrackerapp/edit_goal_stages_screen.dart';
 import 'package:progresstrackerapp/edit_profile_screen.dart';
 import 'package:progresstrackerapp/expired_goals_screen.dart';
 import 'package:progresstrackerapp/home_screen_unauthorized_user.dart';
@@ -53,7 +54,8 @@ class MyApp extends StatelessWidget {
         '/ViewingCreatedGoalScreen':(context) => const ViewingCreatedGoalScreen(),
         '/EditGoalScreen':(context) => const EditGoalScreen(),
         '/ViewGoalStagesScreen':(context) => const ViewGoalStagesScreen(),
-        '/CreateGoalStagesScreen':(context) => const CreateGoalStagesScreen(),           
+        '/CreateGoalStagesScreen':(context) => const CreateGoalStagesScreen(), 
+        '/EditGoalStagesScreen':(context) => const EditGoalStagesScreen(),         
 
 
       },

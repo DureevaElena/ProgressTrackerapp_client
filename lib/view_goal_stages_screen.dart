@@ -110,7 +110,7 @@ class _ViewGoalStagesScreenState extends State<ViewGoalStagesScreen> {
               children: [
                 IconButton(
                   onPressed: () {
-                    // Действие при нажатии на кнопку редактирования
+                    Navigator.pushNamed(context, '/EditGoalStagesScreen');
                   },
                   icon: const Icon(
                     Icons.edit,
