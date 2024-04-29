@@ -140,7 +140,7 @@ class PersonalInformationUserScreen extends StatelessWidget {
                 Align(alignment: Alignment.bottomLeft,
                   child: TextButton(
                       onPressed: () {
-                      //Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
+                      Navigator.pushNamed(context, '/CurrentGoalsScreen');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
@@ -178,7 +178,7 @@ class PersonalInformationUserScreen extends StatelessWidget {
                 Align(alignment: Alignment.bottomLeft,
                   child: TextButton(
                       onPressed: () {
-                      //Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
+                      Navigator.pushNamed(context, '/ExpiredGoalsScreen');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
@@ -217,7 +217,7 @@ class PersonalInformationUserScreen extends StatelessWidget {
                 Align(alignment: Alignment.bottomLeft,
                   child: TextButton(
                       onPressed: () {
-                      //Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
+                      Navigator.pushNamed(context, '/CurrentGoalsScreen');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
