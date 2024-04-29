@@ -12,6 +12,7 @@ import 'package:progresstrackerapp/password_recovery_screen.dart';
 import 'package:progresstrackerapp/personal_information_user_screen.dart';
 import 'package:progresstrackerapp/registration_form_screen.dart';
 import 'package:progresstrackerapp/verification_code_screen.dart';
+import 'package:progresstrackerapp/viewing_created_goal_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         '/ExpiredGoalsScreen':(context) => const ExpiredGoalsScreen(),
         '/CurrentGoalsScreen':(context) => const CurrentGoalsScreen(),
         '/CreateGoalScreen':(context) => const CreateGoalScreen(),
+        '/ViewingCreatedGoalScreen':(context) => const ViewingCreatedGoalScreen(),
 
 
       },
