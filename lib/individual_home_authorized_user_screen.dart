@@ -31,30 +31,41 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(10),
-        child: Row(
+        child: Column(
           children: [
-            ElevatedButton(
-              onPressed: () {
-                // Действие при нажатии на кнопку "Индивидуальные"
-              },
-              child: Text('Индивидуальные'),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    // Действие при нажатии на кнопку "Индивидуальные"
+                  },
+                  child: Text('Индивидуальные'),
+                ),
+                SizedBox(width: 10), // Промежуток между кнопками
+                ElevatedButton(
+                  onPressed: () {
+                    // Действие при нажатии на кнопку "Общие"
+                  },
+                  child: Text('Общие'),
+                ),
+              ],
             ),
-            SizedBox(width: 10), // Промежуток между кнопками
-            ElevatedButton(
-              onPressed: () {
-                // Действие при нажатии на кнопку "Общие"
-              },
-              child: Text('Общие'),
+            SizedBox(height: 20), // Отступ после кнопок
+            Container(
+              height: 100,
+              width: MediaQuery.of(context).size.width, // Ширина экрана
+              color: Colors.grey, // Цвет прямоугольника
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          
-          // Действие при нажатии на кнопку "+"
+          Navigator.pushNamed(context, '/CreateGoalScreen');
         },
-        child: Icon(Icons.add),
+        backgroundColor: Colors.red,
+        child: Icon(Icons.add, color: Colors.white),
+        shape: CircleBorder(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:progresstrackerapp/authorization_form_screen.dart';
 import 'package:progresstrackerapp/change_password_screen.dart';
+import 'package:progresstrackerapp/create_goal_screen.dart';
 import 'package:progresstrackerapp/current_goals_screen.dart';
 import 'package:progresstrackerapp/edit_profile_screen.dart';
 import 'package:progresstrackerapp/expired_goals_screen.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         '/CurrentGoalsScreen':(context) => const CurrentGoalsScreen(),
         '/ExpiredGoalsScreen':(context) => const ExpiredGoalsScreen(),
         '/CurrentGoalsScreen':(context) => const CurrentGoalsScreen(),
+        '/CreateGoalScreen':(context) => const CreateGoalScreen(),
 
 
       },
