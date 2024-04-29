@@ -36,7 +36,8 @@ class EditProfileScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
+      body: SingleChildScrollView(
+        child: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
           children: [
@@ -74,8 +75,10 @@ class EditProfileScreen extends StatelessWidget {
             ),
 
             SizedBox(height: 50,),
+
+
             
-            const Padding(padding: EdgeInsets.only(left: 10),
+            const Padding(padding: EdgeInsets.only(left: 20),
             child: Align(
               alignment: Alignment.centerLeft,
                 child: Text('Имя',
@@ -93,8 +96,8 @@ class EditProfileScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: TextField(
-                      
                       decoration: InputDecoration(
+                        hintText: "YouName",
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
                           borderSide: BorderSide(color: Colors.black,width: 2.0),
@@ -111,7 +114,7 @@ class EditProfileScreen extends StatelessWidget {
                   onPressed: (){
 
                   }, 
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.edit,
                     color: Colors.black,
                     size: 30,
@@ -120,15 +123,103 @@ class EditProfileScreen extends StatelessWidget {
               ],
             ),
 
-            
+            SizedBox(height: 15,),
 
+            const Padding(padding: EdgeInsets.only(left: 20),
+            child: Align(
+              alignment: Alignment.centerLeft,
+                child: Text('Дата рождения',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),  
+                ),
+              ),
+            ),
 
-            
+            Row(
+              children: [
+                const Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: "26.05.2006",
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          borderSide: BorderSide(color: Colors.black,width: 2.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          borderSide: BorderSide(color: Colors.pink,width: 2.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: (){
 
+                  }, 
+                  icon: const Icon(
+                    Icons.edit,
+                    color: Colors.black,
+                    size: 30,
+                  ),
+                ),
+              ],
+            ),
 
-  
+            SizedBox(height: 15,),
+
+            const Padding(padding: EdgeInsets.only(left: 20),
+            child: Align(
+              alignment: Alignment.centerLeft,
+                child: Text('Почта',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),  
+                ),
+              ),
+            ),
+
+            Row(
+              children: [
+                const Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: "youname@gmail.com",
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          borderSide: BorderSide(color: Colors.black,width: 2.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          borderSide: BorderSide(color: Colors.pink,width: 2.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: (){
+                    //при нажатии на иконку редактировать
+
+                  }, 
+                  icon: const Icon(
+                    Icons.edit,
+                    color: Colors.black,
+                    size: 30,
+                  ),
+                ),
+              ],
+            ),
           ],
         ), 
+      ),
       ),
     );
   }
