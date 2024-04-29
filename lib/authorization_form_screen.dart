@@ -49,7 +49,7 @@ class AuthorizationFormScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
 
             const Padding(padding: EdgeInsets.only(left: 10),
             child: Align(
@@ -95,7 +95,7 @@ class AuthorizationFormScreen extends StatelessWidget {
             Align(alignment: Alignment.bottomLeft,
               child: TextButton(
                 onPressed: () {
-                  //Navigator.pushNamed(context, '/PasswordRecoveryFormScreen');
+                  Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,

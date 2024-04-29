@@ -18,12 +18,12 @@ class HomeScreenUnauthorizedUser extends StatelessWidget {
           fontSize: 35)),
       ),
       body: Padding(
-        padding: EdgeInsets.all(10), // Отступ со всех сторон на 10 пикселей
+        padding: EdgeInsets.all(10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Только авторизированный пользователь может добавить цель', // Отображаем текст
+              'Только авторизированный пользователь может добавить цель',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,
@@ -45,7 +45,7 @@ class HomeScreenUnauthorizedUser extends StatelessWidget {
             ),
             SizedBox(height: 150),
             const Text(
-              'Если нет аккаунта', // Отображаем текст
+              'Если нет аккаунта',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 18,

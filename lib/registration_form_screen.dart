@@ -128,7 +128,7 @@ class RegistrationFormScreen extends StatelessWidget {
               Align(alignment: Alignment.bottomCenter,
                 child: TextButton(
                   onPressed: () {
-                    //Navigator.pushNamed(context, '/AuthorizationFormScreen');
+                    Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
