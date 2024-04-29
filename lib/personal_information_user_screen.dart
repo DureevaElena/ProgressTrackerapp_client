@@ -135,100 +135,151 @@ class PersonalInformationUserScreen extends StatelessWidget {
 
             SizedBox(height: 10,),
 
-            Align(alignment: Alignment.bottomLeft,
-              child: TextButton(
-                onPressed: () {
-                  //Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                ),
-                child: const Text(
-                  'Текущие цели',
-                  style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    color: Colors.white,
-                    fontSize: 20,
+            Row(
+              children: [
+                Align(alignment: Alignment.bottomLeft,
+                  child: TextButton(
+                      onPressed: () {
+                      //Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                    ),
+                    child: const Text(
+                      'Текущие цели',
+                     style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                const Expanded(child: 
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text('0',
+                      style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: Colors.black,
+                        fontSize: 25,
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
+
             SizedBox(height: 10,),
-            Align(alignment: Alignment.bottomLeft,
-              child: TextButton(
-                onPressed: () {
-                  //Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                ),
-                child: const Text(
-                  'Просроченные цели',
-                  style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    color: Colors.white,
-                    fontSize: 20,
+            Row(
+              children: [
+                Align(alignment: Alignment.bottomLeft,
+                  child: TextButton(
+                      onPressed: () {
+                      //Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                    ),
+                    child: const Text(
+                      'Просроченные цели',
+                     style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                const Expanded(child: 
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text('0',
+                      style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: Colors.black,
+                        fontSize: 25,
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
+
             SizedBox(height: 10,),
-            Align(alignment: Alignment.bottomLeft,
-              child: TextButton(
-                onPressed: () {
-                  //Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                ),
-                child: const Text(
-                  'Завершенные цели',
-                  style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    color: Colors.white,
-                    fontSize: 20,
+
+            Row(
+              children: [
+                Align(alignment: Alignment.bottomLeft,
+                  child: TextButton(
+                      onPressed: () {
+                      //Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                    ),
+                    child: const Text(
+                      'Завершенные цели',
+                     style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                const Expanded(child: 
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text('0',
+                      style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: Colors.black,
+                        fontSize: 25,
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
+
+            
 
             SizedBox(height: 30,),
 
-            TextButton(
-              onPressed: () {
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: IconButton(
+                onPressed: () {
                 Navigator.pushNamed(context, '/HomeScreenUnauthorizedUser');
-              },
-              
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.exit_to_app),
-                  const SizedBox(width: 5,),
-                  const Text(
-                  'Выйти',
-                  style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    color: Colors.black,
-                    fontSize: 18,
-                  ),
+                },
+                icon: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.exit_to_app,
+                      color: Colors.black,
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      'Выйти',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-                
               ),
-            ),
-            
-              
-
-
-            
-
-            
+            ),  
           ],
         ), 
       ),
