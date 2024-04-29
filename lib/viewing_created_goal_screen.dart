@@ -22,6 +22,7 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
           IconButton(
             onPressed: (){
               //Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
+              //удалить
 
             }, 
             icon: const Icon(
@@ -31,13 +32,13 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
             ),
           ),
         ],bottom: PreferredSize(
-            preferredSize: Size.fromHeight(40.0), // Определение высоты вкладок
+            preferredSize: Size.fromHeight(40.0), 
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Распределение кнопок по ширине
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
                   onPressed: () {
-                    // Действие при нажатии на кнопку "Первая кнопка"
+                    //Navigator.pushNamed(context, '/ViewingCreatedGoalScreen');
                   },
                   child: const Text(
                       'Описание',
@@ -49,13 +50,13 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
                   ),
                 TextButton(
                   onPressed: () {
-                    // Действие при нажатии на кнопку "Вторая кнопка"
+                    // Переход на Этапы
                   },
                   child: const Text(
                     'Этапы',
                     style: TextStyle(
-                      color: Colors.black, // Цвет текста кнопки
-                      fontSize: 16, // Размер шрифта кнопки
+                      color: Colors.black,
+                      fontSize: 16,
                     ),
                   ),
                 ),
@@ -89,7 +90,7 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 35,
                     color: Colors.black,
-                  ),  
+                  ),
                 ),
               ),
             ),
@@ -141,7 +142,7 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: TextButton(
                   onPressed: () {
-                    // Действие при нажатии кнопки
+                    Navigator.pushNamed(context, '/EditGoalScreen');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,

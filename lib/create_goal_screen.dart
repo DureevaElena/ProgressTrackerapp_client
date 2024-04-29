@@ -80,7 +80,7 @@ class CreateGoalScreen extends StatelessWidget {
                   ),
                   SizedBox(width: 8),
                   Icon(
-                    Icons.photo,
+                    Icons.camera_alt_outlined,
                     color: Colors.white,
                       size: 20,
                   ),
