@@ -35,6 +35,13 @@ class CreateGoalScreen extends StatelessWidget {
             ),
           ),
         ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2.0), // Высота линии
+          child: Container(
+            color: Colors.black, // Цвет линии
+            height: 2.0, // Высота линии
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -60,7 +67,7 @@ class CreateGoalScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: TextButton(
                 onPressed: () {
-                    // Действие при нажатии кнопки
+                    // Действие при нажатии кнопки "Добавить фото"
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,

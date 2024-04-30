@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-//Этапы
-
 class ViewCommunityGoalStagesScreen extends StatefulWidget {
   const ViewCommunityGoalStagesScreen({Key? key}) : super(key: key);
 
@@ -41,36 +39,43 @@ class _ViewGoalStagesScreenState extends State<ViewCommunityGoalStagesScreen> {
             size: 30,
           ),
         ),
-        
+
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(40.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Column( // Оборачиваем Row в Column
             children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/ViewCommunityGoalScreen');
-                },
-                child: const Text(
-                  'Описание',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/ViewCommunityGoalScreen');
+                    },
+                    child: const Text(
+                      'Описание',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
-                ),
+                  TextButton(
+                    onPressed: () {
+                      //Navigator.pushNamed(context, '/ViewCommunityGoalStagesScreen');
+                    },
+                    child: const Text(
+                      'Этапы',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              TextButton(
-                onPressed: () {
-                  // Ничего не делаем, мы уже на этой странице
-                },
-                child: const Text(
-                  'Этапы',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+              Container( // Добавляем черную линию
+                color: Colors.black,
+                height: 2.0,
               ),
             ],
           ),

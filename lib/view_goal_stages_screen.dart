@@ -51,35 +51,43 @@ class _ViewGoalStagesScreenState extends State<ViewGoalStagesScreen> {
             ),
           ),
         ],
+
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(40.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Column( // Оборачиваем Row в Column
             children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/ViewingCreatedGoalScreen');
-                },
-                child: const Text(
-                  'Описание',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/ViewingCreatedGoalScreen');
+                    },
+                    child: const Text(
+                      'Описание',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
-                ),
+                  TextButton(
+                    onPressed: () {
+                      //Navigator.pushNamed(context, '/ViewCommunityGoalStagesScreen');
+                    },
+                    child: const Text(
+                      'Этапы',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              TextButton(
-                onPressed: () {
-                  // Ничего не делаем, мы уже на этой странице
-                },
-                child: const Text(
-                  'Этапы',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+              Container( // Добавляем черную линию
+                color: Colors.black,
+                height: 2.0,
               ),
             ],
           ),
@@ -133,13 +141,12 @@ class _ViewGoalStagesScreenState extends State<ViewGoalStagesScreen> {
           );
         },
         separatorBuilder: (context, index) {
-          // Добавляем разделитель после каждого элемента списка, кроме последнего
           return const Divider(
             color: Colors.black,
             height: 5,
           );
         },
-        itemCount: 10, // Количество элементов в списке
+        itemCount: 10,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

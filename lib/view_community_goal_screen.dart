@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-//Цели
-
 class ViewCommunityGoalScreen extends StatelessWidget {
   const ViewCommunityGoalScreen({Key? key}) : super(key: key);
 
@@ -20,34 +18,43 @@ class ViewCommunityGoalScreen extends StatelessWidget {
             size: 30,
           ),
         ),
+        
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(40.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Column( // Оборачиваем Row в Column
             children: [
-              TextButton(
-                onPressed: () {
-                  //Navigator.pushNamed(context, '/EditGoalScreen');
-                },
-                child: const Text(
-                  'Описание',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      //Navigator.pushNamed(context, '/EditGoalScreen');
+                    },
+                    child: const Text(
+                      'Описание',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
-                ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/ViewCommunityGoalStagesScreen');
+                    },
+                    child: const Text(
+                      'Этапы',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/ViewCommunityGoalStagesScreen');
-                },
-                child: const Text(
-                  'Этапы',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                  ),
-                ),
+              Container( // Добавляем черную линию
+                color: Colors.black,
+                height: 2.0,
               ),
             ],
           ),

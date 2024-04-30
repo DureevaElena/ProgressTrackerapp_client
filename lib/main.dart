@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Named Routes',
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          color: Colors.pink,
+        appBarTheme: const AppBarTheme(
+          color: Color.fromRGBO(185, 110, 147, 1),
         ),
         scaffoldBackgroundColor: Colors.blue,
       ),

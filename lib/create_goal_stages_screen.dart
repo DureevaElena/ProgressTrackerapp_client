@@ -35,6 +35,13 @@ class CreateGoalStagesScreen extends StatelessWidget {
             ),
           ),
         ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2.0), // Высота линии
+          child: Container(
+            color: Colors.black, // Цвет линии
+            height: 2.0, // Высота линии
+          ),
+        ),
       ),
       body: const SingleChildScrollView(
         child: Padding(

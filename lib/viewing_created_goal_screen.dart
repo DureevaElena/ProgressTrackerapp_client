@@ -31,39 +31,48 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
               size: 35,
             ),
           ),
-        ],bottom: PreferredSize(
-            preferredSize: Size.fromHeight(40.0), 
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    //Navigator.pushNamed(context, '/EditGoalScreen');
-                  },
-                  child: const Text(
+        ],
+        
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(40.0),
+          child: Column( // Оборачиваем Row в Column
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/ViewingCreatedGoalScreen');
+                    },
+                    child: const Text(
                       'Описание',
                       style: TextStyle(
-                        color: Colors.black, // Цвет текста кнопки
-                        fontSize: 16, // Размер шрифта кнопки
+                        color: Colors.black,
+                        fontSize: 16,
                       ),
                     ),
                   ),
-                TextButton(
-                  onPressed: () {
-                    
-                    Navigator.pushNamed(context, '/ViewGoalStagesScreen');
-                  },
-                  child: const Text(
-                    'Этапы',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
+                  TextButton(
+                    onPressed: () {
+                      //Navigator.pushNamed(context, '/ViewCommunityGoalStagesScreen');
+                    },
+                    child: const Text(
+                      'Этапы',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+              Container( // Добавляем черную линию
+                color: Colors.black,
+                height: 2.0,
+              ),
+            ],
           ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(30.0),

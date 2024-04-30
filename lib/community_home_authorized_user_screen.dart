@@ -27,6 +27,13 @@ class CommunityHomeScreenAuthorizedUser extends StatelessWidget {
           iconSize: 40,
           ),
         ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2.0), // Высота линии
+          child: Container(
+            color: Colors.black, // Цвет линии
+            height: 2.0, // Высота линии
+          ),
+        ),
         
       ),
       body: Padding(

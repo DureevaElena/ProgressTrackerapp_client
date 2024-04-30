@@ -44,6 +44,13 @@ class _EditGoalScreenState extends State<EditGoalScreen> {
             ),
           ),
         ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2.0), // Высота линии
+          child: Container(
+            color: Colors.black, // Цвет линии
+            height: 2.0, // Высота линии
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -66,7 +73,7 @@ class _EditGoalScreenState extends State<EditGoalScreen> {
                 alignment: Alignment.bottomCenter,
                 child: TextButton(
                   onPressed: () {
-                    // Действие при нажатии кнопки
+                    // Действие при нажатии кнопки "Добавить фото"
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
@@ -240,7 +247,7 @@ class _EditGoalScreenState extends State<EditGoalScreen> {
                             borderSide: BorderSide(color: Colors.pink, width: 2.0),
                           ),
                         ),
-                        items: <String>['Текущие цели', 'Завершенные', 'Просроченные']
+                        items: <String>['Текущие цели', 'Завершенные цели', 'Просроченные цели']
                           .map<DropdownMenuItem<String>>(
                             (String value) => DropdownMenuItem<String>(
                               value: value,

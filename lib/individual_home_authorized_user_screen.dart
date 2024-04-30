@@ -27,7 +27,13 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
           iconSize: 40,
           ),
         ],
-        
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2.0), // Высота линии
+          child: Container(
+            color: Colors.black, // Цвет линии
+            height: 2.0, // Высота линии
+          ),
+        ),
       ),
       body: Padding(
       padding: EdgeInsets.all(10),
@@ -38,7 +44,7 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  // Действие при нажатии на кнопку "Индивидуальные"
+                  // Действие при нажатии на кнопку "Индивидуальные" (ничего не должно быть, т.к находимся на вкладке "Индивидуальные")
                 },
                 child: Text('Индивидуальные'),
               ),
@@ -75,7 +81,7 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                         ),
                         Expanded(
                           child: Container(
-                            color: Colors.grey, // Серый цвет
+                            color: Colors.grey,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
@@ -85,18 +91,18 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                                   const Text(
                                     'Принципы ООП',
                                     style: TextStyle(
-                                      fontSize: 22, // Размер текста 12
-                                      color: Colors.white, // Белый цвет текста
+                                      fontSize: 22,
+                                      color: Colors.white,
                                     ),
                                   ),
                                   const Text(
                                     'Осталось 6 дней',
                                     style: TextStyle(
-                                      fontSize: 18, // Размер текста 6
-                                      color: Colors.white, // Белый цвет текста
+                                      fontSize: 18,
+                                      color: Colors.white,
                                     ),
                                   ),
-                                  SizedBox(height: 20), // Отступ между текстом "Осталось 6 дней" и надписью "30%"
+                                  SizedBox(height: 20),
                                   const Align(
                                     alignment: Alignment.centerRight,
                                     child: Text(
@@ -107,20 +113,20 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 8), // Отступ между текстом "Осталось 6 дней" и линией
+                                  SizedBox(height: 8),
                                   Stack(
                                     children: [
                                       Container(
                                         height: 5,
                                         width: double.infinity,
-                                        color: Colors.black, // Серый цвет
+                                        color: Colors.black,
                                       ),
                                       FractionallySizedBox(
                                         alignment: Alignment.centerLeft,
-                                        widthFactor: 0.3, // 30% ширины
+                                        widthFactor: 0.3, // сколько % закрашено
                                         child: Container(
                                           height: 5,
-                                          color: Colors.green, // Зеленый цвет
+                                          color: Colors.green,
                                         ),
                                       ),
                                     ],
@@ -139,7 +145,7 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: IconButton(
                           onPressed: () {
-                            // Действие при нажатии на иконку поиска
+                            // Действие при нажатии на иконку для отправки контейнера (цели) на вкладку "Общие"
                           },
                           icon: Icon(Icons.search, color: Colors.white, size: 32),
                         ),

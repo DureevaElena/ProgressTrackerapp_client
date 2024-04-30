@@ -15,7 +15,16 @@ class HomeScreenUnauthorizedUser extends StatelessWidget {
         title: const Text('ProgressTracker', 
         style: TextStyle(
           fontFamily: 'Montserrat', 
-          fontSize: 35)),
+          fontSize: 35,
+          color: Colors.black)
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2.0), // Высота линии
+          child: Container(
+            color: Colors.black, // Цвет линии
+            height: 2.0, // Высота линии
+          ),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(10),
@@ -66,9 +75,7 @@ class HomeScreenUnauthorizedUser extends StatelessWidget {
               ),
             ),
           ],
-          
         ),
-        
       ),
     );
   }

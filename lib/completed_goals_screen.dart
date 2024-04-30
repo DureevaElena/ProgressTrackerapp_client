@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-//Завершенные цели
-
 class CurrentGoalsScreen extends StatelessWidget {
   const CurrentGoalsScreen({Key? key}) : super(key: key);
 
@@ -23,7 +20,15 @@ class CurrentGoalsScreen extends StatelessWidget {
         title: const Text('Завершенные цели', 
         style: TextStyle(
           fontFamily: 'Montserrat', 
-          fontSize: 30)),
+          fontSize: 30)
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2.0), // Высота линии
+          child: Container(
+            color: Colors.black, // Цвет линии
+            height: 2.0, // Высота линии
+          ),
+        ),
       ),
       body: ListView.separated(
         itemBuilder: (context, index) {
@@ -42,14 +47,12 @@ class CurrentGoalsScreen extends StatelessWidget {
           );
         },
         separatorBuilder: (context, index) {
-          // Добавляем разделитель после каждого элемента списка, кроме последнего
           return const Divider(
             color: Colors.black,
             height: 5,
           );
         },
         itemCount: 8,
-         // Количество элементов в списке
       ),
     );
   }

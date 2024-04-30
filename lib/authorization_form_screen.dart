@@ -20,13 +20,22 @@ class AuthorizationFormScreen extends StatelessWidget {
         title: const Text('ProgressTracker', 
         style: TextStyle(
           fontFamily: 'Montserrat', 
-          fontSize: 35)),
+          fontSize: 35)
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2.0), // Высота линии
+          child: Container(
+            color: Colors.black, // Цвет линии
+            height: 2.0, // Высота линии
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            
             const Padding(padding: EdgeInsets.only(left: 10),
             child: Align(
               alignment: Alignment.centerLeft,

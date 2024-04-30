@@ -4,7 +4,7 @@ class LoadingAppScreen extends StatelessWidget {
   const LoadingAppScreen({Key? key}) : super(key: key);
 
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(Duration(seconds: 2), () {
       Navigator.pushNamed(context, '/HomeScreenUnauthorizedUser');
     });
     return Scaffold(
