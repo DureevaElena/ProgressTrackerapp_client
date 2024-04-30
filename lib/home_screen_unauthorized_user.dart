@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class HomeScreenUnauthorizedUser extends StatelessWidget {
   const HomeScreenUnauthorizedUser({Key? key}) : super(key: key);
 
@@ -19,10 +20,10 @@ class HomeScreenUnauthorizedUser extends StatelessWidget {
           color: Colors.black)
         ),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(2.0), // Высота линии
+          preferredSize: Size.fromHeight(2.0),
           child: Container(
-            color: Colors.black, // Цвет линии
-            height: 2.0, // Высота линии
+            color: Colors.black,
+            height: 2.0,
           ),
         ),
       ),

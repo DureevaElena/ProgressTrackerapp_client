@@ -23,10 +23,10 @@ class ChangePasswordFormScreen extends StatelessWidget {
           fontSize: 35)
         ),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(2.0), // Высота линии
+          preferredSize: Size.fromHeight(2.0),
           child: Container(
-            color: Colors.black, // Цвет линии
-            height: 2.0, // Высота линии
+            color: Colors.black,
+            height: 2.0,
           ),
         ),
       ),

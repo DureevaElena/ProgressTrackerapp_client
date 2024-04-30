@@ -28,10 +28,10 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
           ),
         ],
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(2.0), // Высота линии
+          preferredSize: Size.fromHeight(2.0),
           child: Container(
-            color: Colors.black, // Цвет линии
-            height: 2.0, // Высота линии
+            color: Colors.black,
+            height: 2.0,
           ),
         ),
       ),
@@ -123,7 +123,7 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                                       ),
                                       FractionallySizedBox(
                                         alignment: Alignment.centerLeft,
-                                        widthFactor: 0.3, // сколько % закрашено
+                                        widthFactor: 0.3, // сколько % будет заполнено
                                         child: Container(
                                           height: 5,
                                           color: Colors.green,

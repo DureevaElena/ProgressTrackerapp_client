@@ -85,7 +85,7 @@ class _ViewGoalStagesScreenState extends State<ViewGoalStagesScreen> {
                   ),
                 ],
               ),
-              Container( // Добавляем черную линию
+              Container(
                 color: Colors.black,
                 height: 2.0,
               ),

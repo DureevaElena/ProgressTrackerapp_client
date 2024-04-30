@@ -8,7 +8,7 @@ class LoadingAppScreen extends StatelessWidget {
       Navigator.pushNamed(context, '/HomeScreenUnauthorizedUser');
     });
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 240, 240, 240),
+      backgroundColor: Color.fromARGB(255, 249, 249, 249),
       body: Center(
         child: Image.asset('assets/logo.png', width: 200, height: 200)
       ),
