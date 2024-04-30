@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:progresstrackerapp/authorization_form_screen.dart';
 import 'package:progresstrackerapp/change_password_screen.dart';
+import 'package:progresstrackerapp/community_home_authorized_user_screen.dart';
 import 'package:progresstrackerapp/create_goal_screen.dart';
 import 'package:progresstrackerapp/create_goal_stages_screen.dart';
 import 'package:progresstrackerapp/current_goals_screen.dart';
@@ -15,6 +16,8 @@ import 'package:progresstrackerapp/password_recovery_screen.dart';
 import 'package:progresstrackerapp/personal_information_user_screen.dart';
 import 'package:progresstrackerapp/registration_form_screen.dart';
 import 'package:progresstrackerapp/verification_code_screen.dart';
+import 'package:progresstrackerapp/view_community_goal_screen.dart';
+import 'package:progresstrackerapp/view_community_goal_stages_screen.dart';
 import 'package:progresstrackerapp/view_goal_stages_screen.dart';
 import 'package:progresstrackerapp/viewing_created_goal_screen.dart';
 
@@ -55,9 +58,10 @@ class MyApp extends StatelessWidget {
         '/EditGoalScreen':(context) => const EditGoalScreen(),
         '/ViewGoalStagesScreen':(context) => const ViewGoalStagesScreen(),
         '/CreateGoalStagesScreen':(context) => const CreateGoalStagesScreen(), 
-        '/EditGoalStagesScreen':(context) => const EditGoalStagesScreen(),         
-
-
+        '/EditGoalStagesScreen':(context) => const EditGoalStagesScreen(),
+        '/CommunityHomeScreenAuthorizedUser':(context) => const CommunityHomeScreenAuthorizedUser(),
+        '/ViewCommunityGoalScreen':(context) => ViewCommunityGoalScreen(),  
+        '/ViewCommunityGoalStagesScreen':(context) => const ViewCommunityGoalStagesScreen(),       
       },
     );
   }

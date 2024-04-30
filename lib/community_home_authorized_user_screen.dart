@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
-  const IndividualHomeScreenAuthorizedUser({Key? key}) : super(key: key);
+class CommunityHomeScreenAuthorizedUser extends StatelessWidget {
+  const CommunityHomeScreenAuthorizedUser({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +38,14 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  // Действие при нажатии на кнопку "Индивидуальные"
+                  Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
                 },
                 child: Text('Индивидуальные'),
               ),
               SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/CommunityHomeScreenAuthorizedUser');
+                  // Действие при нажатии на кнопку "Общие"
                 },
                 child: Text('Общие'),
               ),
@@ -54,12 +54,12 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
           SizedBox(height: 20),
           GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, '/ViewingCreatedGoalScreen');
+                Navigator.pushNamed(context, '/ViewCommunityGoalScreen');
               },
               child: Container(
                 color: Colors.grey,
-                height: 150, 
-                width: MediaQuery.of(context).size.width, 
+                height: 150,
+                width: MediaQuery.of(context).size.width,
                 child: Stack(
                   children: [
                     Row(
@@ -69,13 +69,13 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                           margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                           decoration: BoxDecoration(
                             color: Colors.red,
-                            borderRadius: BorderRadius.circular(30), 
+                            borderRadius: BorderRadius.circular(30),
                           ),
-                          width: 100, 
+                          width: 100,
                         ),
                         Expanded(
                           child: Container(
-                            color: Colors.grey, // Серый цвет
+                            color: Colors.grey,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
@@ -83,44 +83,51 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                                 children: [
                                   SizedBox(height: 10),
                                   const Text(
-                                    'Принципы ООП',
+                                    'Python за 6 месяцев',
                                     style: TextStyle(
-                                      fontSize: 22, // Размер текста 12
-                                      color: Colors.white, // Белый цвет текста
+                                      fontSize: 22, 
+                                      color: Colors.white, 
                                     ),
                                   ),
                                   const Text(
                                     'Осталось 6 дней',
                                     style: TextStyle(
-                                      fontSize: 18, // Размер текста 6
-                                      color: Colors.white, // Белый цвет текста
+                                      fontSize: 18, 
+                                      color: Colors.white,
                                     ),
                                   ),
-                                  SizedBox(height: 20), // Отступ между текстом "Осталось 6 дней" и надписью "30%"
+                                  const Text(
+                                    'hyeinomg',
+                                    style: TextStyle(
+                                      fontSize: 18, 
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  //SizedBox(height: 1),
                                   const Align(
                                     alignment: Alignment.centerRight,
                                     child: Text(
-                                      '30%',
+                                      '0%',
                                       style: TextStyle(
                                         fontSize: 15,
                                         color: Colors.white,
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 8), // Отступ между текстом "Осталось 6 дней" и линией
+                                  SizedBox(height: 5),
                                   Stack(
                                     children: [
                                       Container(
                                         height: 5,
                                         width: double.infinity,
-                                        color: Colors.black, // Серый цвет
+                                        color: Colors.black,
                                       ),
                                       FractionallySizedBox(
                                         alignment: Alignment.centerLeft,
-                                        widthFactor: 0.3, // 30% ширины
+                                        widthFactor: 0, // сколько процентов выполнено
                                         child: Container(
                                           height: 5,
-                                          color: Colors.green, // Зеленый цвет
+                                          color: Colors.green,
                                         ),
                                       ),
                                     ],
@@ -132,19 +139,6 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Positioned(
-                      top: 0,
-                      right: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: IconButton(
-                          onPressed: () {
-                            // Действие при нажатии на иконку поиска
-                          },
-                          icon: Icon(Icons.search, color: Colors.white, size: 32),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -152,15 +146,6 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/CreateGoalScreen');
-        },
-        backgroundColor: Colors.red,
-        child: Icon(Icons.add, color: Colors.white),
-        shape: CircleBorder(),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
     );
   }
 }

@@ -90,9 +90,9 @@ class EditProfileScreen extends StatelessWidget {
               ),
             ),
 
-            Row(
+            const Row(
               children: [
-                const Expanded(
+                Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: TextField(
@@ -108,16 +108,6 @@ class EditProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                ),
-                IconButton(
-                  onPressed: (){
-
-                  }, 
-                  icon: const Icon(
-                    Icons.edit,
-                    color: Colors.black,
-                    size: 30,
                   ),
                 ),
               ],
@@ -137,9 +127,9 @@ class EditProfileScreen extends StatelessWidget {
               ),
             ),
 
-            Row(
+            const Row(
               children: [
-                const Expanded(
+                Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: TextField(
@@ -155,16 +145,6 @@ class EditProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                ),
-                IconButton(
-                  onPressed: (){
-
-                  }, 
-                  icon: const Icon(
-                    Icons.edit,
-                    color: Colors.black,
-                    size: 30,
                   ),
                 ),
               ],
@@ -184,9 +164,9 @@ class EditProfileScreen extends StatelessWidget {
               ),
             ),
 
-            Row(
+            const Row(
               children: [
-                const Expanded(
+                Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: TextField(
@@ -202,17 +182,6 @@ class EditProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                ),
-                IconButton(
-                  onPressed: (){
-                    //при нажатии на иконку редактировать
-
-                  }, 
-                  icon: const Icon(
-                    Icons.edit,
-                    color: Colors.black,
-                    size: 30,
                   ),
                 ),
               ],
