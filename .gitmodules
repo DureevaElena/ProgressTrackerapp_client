@@ -1,0 +1,4 @@
+[submodule "ProgressTrackerapp_client"]
+	path = ProgressTrackerapp_client
+	url = https://github.com/DureevaElena/ProgressTrackerapp_client.git
+	branch = main
