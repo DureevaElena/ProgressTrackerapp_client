@@ -88,7 +88,6 @@ class PasswordRecoveryFormScreen extends StatelessWidget {
                     fontSize: 20,
                   ),
                 ),
-
               ),
             ),
           ],
