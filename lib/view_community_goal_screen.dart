@@ -72,7 +72,7 @@ class ViewCommunityGoalScreen extends StatelessWidget {
                   height: 150,
                   width: 150,
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: const Color.fromARGB(255, 229,229,229),
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),

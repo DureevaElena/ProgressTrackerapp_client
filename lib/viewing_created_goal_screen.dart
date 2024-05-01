@@ -42,7 +42,7 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
                 children: [
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/ViewingCreatedGoalScreen');
+                      //Navigator.pushNamed(context, '/ViewingCreatedGoalScreen');
                     },
                     child: const Text(
                       'Описание',
@@ -54,7 +54,7 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      //Navigator.pushNamed(context, '/ViewCommunityGoalStagesScreen');
+                      Navigator.pushNamed(context, '/ViewGoalStagesScreen');
                     },
                     child: const Text(
                       'Этапы',
@@ -85,7 +85,7 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
                   height: 150,
                   width: 150,
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: const Color.fromARGB(255,229,229,229),
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
@@ -153,7 +153,7 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
                     Navigator.pushNamed(context, '/EditGoalScreen');
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: Color.fromARGB(255, 25, 25, 230),
                     padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                   ),

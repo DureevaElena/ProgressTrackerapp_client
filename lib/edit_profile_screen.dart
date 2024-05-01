@@ -53,7 +53,7 @@ class EditProfileScreen extends StatelessWidget {
               height: 100,
               width: 100,
               decoration: const BoxDecoration(
-                color: Colors.grey,
+                color: Color.fromARGB(255, 229,229,229),
                 shape: BoxShape.circle,
               ),
             ),
@@ -66,7 +66,7 @@ class EditProfileScreen extends StatelessWidget {
                   //Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
+                  backgroundColor: const Color.fromARGB(255, 25, 25, 230),
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
                 ),
@@ -111,7 +111,7 @@ class EditProfileScreen extends StatelessWidget {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Colors.pink,width: 2.0),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 229,229,229),width: 2.0),
                         ),
                       ),
                     ),
@@ -148,7 +148,7 @@ class EditProfileScreen extends StatelessWidget {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Colors.pink,width: 2.0),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160),width: 2.0),
                         ),
                       ),
                     ),
@@ -185,7 +185,7 @@ class EditProfileScreen extends StatelessWidget {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Colors.pink,width: 2.0),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160),width: 2.0),
                         ),
                       ),
                     ),

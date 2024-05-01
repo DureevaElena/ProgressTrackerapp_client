@@ -54,7 +54,7 @@ class AuthorizationFormScreen extends StatelessWidget {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                  borderSide: BorderSide(color: Colors.pink,width: 2.0),
+                  borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160),width: 2.0),
                 ),
               ),
             ),
@@ -78,7 +78,7 @@ class AuthorizationFormScreen extends StatelessWidget {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                  borderSide: BorderSide(color: Colors.pink,width: 2.0),
+                  borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160),width: 2.0),
                 ),
               ),
             ),
@@ -107,7 +107,7 @@ class AuthorizationFormScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
+                  backgroundColor: Color.fromARGB( 255, 25, 25, 230),
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
                 ),

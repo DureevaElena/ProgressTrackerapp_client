@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CurrentGoalsScreen extends StatelessWidget {
-  const CurrentGoalsScreen({Key? key}) : super(key: key);
+class CompletedGoalsScreen extends StatelessWidget {
+  const CompletedGoalsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

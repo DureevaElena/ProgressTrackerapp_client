@@ -103,7 +103,7 @@ class _ViewGoalStagesScreenState extends State<ViewGoalStagesScreen> {
               icon: Icon(
                 isCompletedList[index] ? Icons.check_circle : Icons.circle,
                 size: 30,
-                color: isCompletedList[index] ? Colors.green : Colors.black,
+                color: isCompletedList[index] ? Color.fromARGB(255, 35, 159, 39) : Colors.black,
               ),
             ),
             title: Text(
@@ -152,7 +152,7 @@ class _ViewGoalStagesScreenState extends State<ViewGoalStagesScreen> {
         onPressed: () {
           Navigator.pushNamed(context, '/CreateGoalStagesScreen');
         },
-        backgroundColor: Colors.red,
+        backgroundColor: Color.fromARGB(255, 25, 25, 230),
         child: Icon(Icons.add, color: Colors.white),
         shape: CircleBorder(),
       ),

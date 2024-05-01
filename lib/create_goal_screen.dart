@@ -55,7 +55,7 @@ class CreateGoalScreen extends StatelessWidget {
                   height: 150,
                   width: 150,
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: const Color.fromARGB(255,229,229,229),
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
@@ -70,7 +70,7 @@ class CreateGoalScreen extends StatelessWidget {
                     // Действие при нажатии кнопки "Добавить фото"
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
+                  backgroundColor: const Color.fromARGB(255, 25, 25, 230),
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                 ),
@@ -125,7 +125,7 @@ class CreateGoalScreen extends StatelessWidget {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Colors.pink,width: 2.0),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160),width: 2.0),
                         ),
                       ),
                     ),
@@ -161,7 +161,7 @@ class CreateGoalScreen extends StatelessWidget {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Colors.pink,width: 2.0),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160),width: 2.0),
                         ),
                       ),
                     ),
@@ -197,7 +197,7 @@ class CreateGoalScreen extends StatelessWidget {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Colors.pink,width: 2.0),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160),width: 2.0),
                         ),
                       ),
                     ),

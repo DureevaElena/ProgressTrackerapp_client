@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:progresstrackerapp/authorization_form_screen.dart';
 import 'package:progresstrackerapp/change_password_screen.dart';
 import 'package:progresstrackerapp/community_home_authorized_user_screen.dart';
+import 'package:progresstrackerapp/completed_goals_screen.dart';
 import 'package:progresstrackerapp/create_goal_screen.dart';
 import 'package:progresstrackerapp/create_goal_stages_screen.dart';
 import 'package:progresstrackerapp/current_goals_screen.dart';
@@ -31,12 +32,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Named Routes',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
-          color: Color.fromRGBO(185, 110, 147, 1),
+          color: Color.fromRGBO(166, 51, 51, 0.027),
         ),
-        scaffoldBackgroundColor: Colors.blue,
+        scaffoldBackgroundColor: const Color.fromARGB(255,249,249,249),
       ),
       initialRoute: '/',
       routes: {
@@ -50,9 +51,8 @@ class MyApp extends StatelessWidget {
         '/IndividualHomeScreenAuthorizedUser':(context) => const IndividualHomeScreenAuthorizedUser(),
         '/PersonalInformationUserScreen':(context) => const PersonalInformationUserScreen(),
         '/EditProfileScreen':(context) => const EditProfileScreen(),
-        '/CurrentGoalsScreen':(context) => const CurrentGoalsScreen(),
+        '/CompletedGoalsScreen':(context) => const CompletedGoalsScreen(),
         '/ExpiredGoalsScreen':(context) => const ExpiredGoalsScreen(),
-        '/CurrentGoalsScreen':(context) => const CurrentGoalsScreen(),
         '/CreateGoalScreen':(context) => const CreateGoalScreen(),
         '/ViewingCreatedGoalScreen':(context) => const ViewingCreatedGoalScreen(),
         '/EditGoalScreen':(context) => const EditGoalScreen(),
@@ -60,8 +60,9 @@ class MyApp extends StatelessWidget {
         '/CreateGoalStagesScreen':(context) => const CreateGoalStagesScreen(), 
         '/EditGoalStagesScreen':(context) => const EditGoalStagesScreen(),
         '/CommunityHomeScreenAuthorizedUser':(context) => const CommunityHomeScreenAuthorizedUser(),
-        '/ViewCommunityGoalScreen':(context) => ViewCommunityGoalScreen(),  
-        '/ViewCommunityGoalStagesScreen':(context) => const ViewCommunityGoalStagesScreen(),       
+        '/ViewCommunityGoalScreen':(context) => const ViewCommunityGoalScreen(),  
+        '/ViewCommunityGoalStagesScreen':(context) => const ViewCommunityGoalStagesScreen(),    
+        '/CurrentGoalsScreen':(context) => const CurrentGoalsScreen(),   
       },
     );
   }

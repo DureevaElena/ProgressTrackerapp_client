@@ -42,19 +42,55 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
         children: [
           Row(
             children: [
-              ElevatedButton(
+              TextButton(
                 onPressed: () {
-                  // Действие при нажатии на кнопку "Индивидуальные" (ничего не должно быть, т.к находимся на вкладке "Индивидуальные")
+                  //Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
                 },
-                child: Text('Индивидуальные'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 14, 122, 218),
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+                ),
+                
+                child: const Text(
+                  'Индивидуальные',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                  
+                ),
               ),
+
+
+             
               SizedBox(width: 10),
-              ElevatedButton(
+
+
+              TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/CommunityHomeScreenAuthorizedUser');
                 },
-                child: Text('Общие'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 194,217,238),
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+                ),
+                child: const Text(
+                  'Общие',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
               ),
+
+
+
+
+
             ],
           ),
           SizedBox(height: 20),
@@ -63,7 +99,7 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                 Navigator.pushNamed(context, '/ViewingCreatedGoalScreen');
               },
               child: Container(
-                color: Colors.grey,
+                color: const Color.fromARGB(255,249,249,249),
                 height: 150, 
                 width: MediaQuery.of(context).size.width, 
                 child: Stack(
@@ -74,14 +110,14 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                           decoration: BoxDecoration(
-                            color: Colors.red,
+                            color: const Color.fromARGB(255, 229,229,229),
                             borderRadius: BorderRadius.circular(30), 
                           ),
                           width: 100, 
                         ),
                         Expanded(
                           child: Container(
-                            color: Colors.grey,
+                            color: const Color.fromARGB(255,249,249,249),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
@@ -92,14 +128,14 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                                     'Принципы ООП',
                                     style: TextStyle(
                                       fontSize: 22,
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   const Text(
                                     'Осталось 6 дней',
                                     style: TextStyle(
                                       fontSize: 18,
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   SizedBox(height: 20),
@@ -109,7 +145,7 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                                       '30%',
                                       style: TextStyle(
                                         fontSize: 15,
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       ),
                                     ),
                                   ),
@@ -126,7 +162,7 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                                         widthFactor: 0.3, // сколько % будет заполнено
                                         child: Container(
                                           height: 5,
-                                          color: Colors.green,
+                                          color: const Color.fromARGB(255, 81, 227, 86),
                                         ),
                                       ),
                                     ],
@@ -147,7 +183,7 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                           onPressed: () {
                             // Действие при нажатии на иконку для отправки контейнера (цели) на вкладку "Общие"
                           },
-                          icon: Icon(Icons.search, color: Colors.white, size: 32),
+                          icon: Icon(Icons.file_upload, color: const Color.fromARGB(255, 25, 25, 230), size: 32),
                         ),
                       ),
                     ),
@@ -162,7 +198,7 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
         onPressed: () {
           Navigator.pushNamed(context, '/CreateGoalScreen');
         },
-        backgroundColor: Colors.red,
+        backgroundColor: const Color.fromARGB(255, 25, 25, 230),
         child: Icon(Icons.add, color: Colors.white),
         shape: CircleBorder(),
       ),

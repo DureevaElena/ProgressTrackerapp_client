@@ -39,7 +39,7 @@ class PersonalInformationUserScreen extends StatelessWidget {
               height: 100,
               width: 100,
               decoration: const BoxDecoration(
-                color: Colors.grey,
+                color: Color.fromARGB(255, 229,229,229),
                 shape: BoxShape.circle,
               ),
             ),
@@ -52,7 +52,7 @@ class PersonalInformationUserScreen extends StatelessWidget {
                 Navigator.pushNamed(context, '/EditProfileScreen');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
+                  backgroundColor: const Color.fromARGB(255, 25, 25, 230),
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
                 ),
@@ -151,7 +151,7 @@ class PersonalInformationUserScreen extends StatelessWidget {
                       Navigator.pushNamed(context, '/CurrentGoalsScreen');
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
+                      backgroundColor: Color.fromARGB(255, 25, 25, 230),
                       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
                     ),
@@ -189,7 +189,7 @@ class PersonalInformationUserScreen extends StatelessWidget {
                       Navigator.pushNamed(context, '/ExpiredGoalsScreen');
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
+                      backgroundColor: Color.fromARGB(255, 25, 25, 230),
                       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
                     ),
@@ -225,10 +225,10 @@ class PersonalInformationUserScreen extends StatelessWidget {
                 Align(alignment: Alignment.bottomLeft,
                   child: TextButton(
                       onPressed: () {
-                      Navigator.pushNamed(context, '/CurrentGoalsScreen');
+                      Navigator.pushNamed(context, '/CompletedGoalsScreen');
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
+                      backgroundColor: Color.fromARGB(255, 25, 25, 230),
                       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
                     ),

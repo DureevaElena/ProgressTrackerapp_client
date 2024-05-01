@@ -91,7 +91,7 @@ class _ViewGoalStagesScreenState extends State<ViewCommunityGoalStagesScreen> {
               icon: Icon(
                 isCompletedList[index] ? Icons.check_circle : Icons.circle,
                 size: 30,
-                color: isCompletedList[index] ? Colors.green : Colors.black,
+                color: isCompletedList[index] ? const Color.fromARGB(255, 35, 159, 39) : Colors.black,
               ),
             ),
             title: Text(

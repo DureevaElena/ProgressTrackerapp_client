@@ -43,18 +43,47 @@ class CommunityHomeScreenAuthorizedUser extends StatelessWidget {
         children: [
           Row(
             children: [
-              ElevatedButton(
+              TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
                 },
-                child: Text('Индивидуальные'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 194,217,238),
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+                ),
+                child: const Text(
+                  'Индивидуальные',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
               ),
+
+
+             
               SizedBox(width: 10),
-              ElevatedButton(
+
+
+              TextButton(
                 onPressed: () {
-                  // Действие при нажатии на кнопку "Общие"
+                  //Navigator.pushNamed(context, '/IndividualHomeScreenAuthorizedUser');
                 },
-                child: Text('Общие'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 14, 122, 218),
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+                ),
+                child: const Text(
+                  'Общие',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
               ),
             ],
           ),
@@ -64,7 +93,7 @@ class CommunityHomeScreenAuthorizedUser extends StatelessWidget {
                 Navigator.pushNamed(context, '/ViewCommunityGoalScreen');
               },
               child: Container(
-                color: Colors.grey,
+                color: const Color.fromARGB(255,249,249,249),
                 height: 150,
                 width: MediaQuery.of(context).size.width,
                 child: Stack(
@@ -73,16 +102,16 @@ class CommunityHomeScreenAuthorizedUser extends StatelessWidget {
                       children: [
                         SizedBox(width: 20),
                         Container(
-                          margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                          margin: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
                           decoration: BoxDecoration(
-                            color: Colors.red,
+                            color: const Color.fromARGB(255, 229,229,229),
                             borderRadius: BorderRadius.circular(30),
                           ),
                           width: 100,
                         ),
                         Expanded(
                           child: Container(
-                            color: Colors.grey,
+                            color: Color.fromARGB(255,249,249,249),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
@@ -93,21 +122,21 @@ class CommunityHomeScreenAuthorizedUser extends StatelessWidget {
                                     'Python за 6 месяцев',
                                     style: TextStyle(
                                       fontSize: 22, 
-                                      color: Colors.white, 
+                                      color: Colors.black, 
                                     ),
                                   ),
                                   const Text(
                                     'Осталось 6 дней',
                                     style: TextStyle(
                                       fontSize: 18, 
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   const Text(
                                     'hyeinomg',
                                     style: TextStyle(
                                       fontSize: 18, 
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   //SizedBox(height: 1),
@@ -117,7 +146,7 @@ class CommunityHomeScreenAuthorizedUser extends StatelessWidget {
                                       '0%',
                                       style: TextStyle(
                                         fontSize: 15,
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       ),
                                     ),
                                   ),

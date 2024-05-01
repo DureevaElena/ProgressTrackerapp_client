@@ -73,7 +73,7 @@ class CreateGoalStagesScreen extends StatelessWidget {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Colors.pink,width: 2.0),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160),width: 2.0),
                         ),
                       ),
                     ),
@@ -109,7 +109,7 @@ class CreateGoalStagesScreen extends StatelessWidget {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Colors.pink,width: 2.0),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160),width: 2.0),
                         ),
                       ),
                     ),
@@ -145,7 +145,7 @@ class CreateGoalStagesScreen extends StatelessWidget {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Colors.pink,width: 2.0),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160),width: 2.0),
                         ),
                       ),
                     ),
