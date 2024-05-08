@@ -168,7 +168,7 @@ class PersonalInformationUserScreen extends StatelessWidget {
                 const Expanded(child: 
                   Align(
                     alignment: Alignment.bottomRight,
-                    child: Text('0',
+                    child: Text('10',
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         color: Colors.black,
@@ -206,7 +206,7 @@ class PersonalInformationUserScreen extends StatelessWidget {
                 const Expanded(child: 
                   Align(
                     alignment: Alignment.bottomRight,
-                    child: Text('0',
+                    child: Text('5',
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         color: Colors.black,
@@ -245,7 +245,7 @@ class PersonalInformationUserScreen extends StatelessWidget {
                 const Expanded(child: 
                   Align(
                     alignment: Alignment.bottomRight,
-                    child: Text('0',
+                    child: Text('8',
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         color: Colors.black,
