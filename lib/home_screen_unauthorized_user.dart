@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
+
 
 
 class HomeScreenUnauthorizedUser extends StatelessWidget {
@@ -64,6 +66,7 @@ class HomeScreenUnauthorizedUser extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
+                AppMetrica.reportEvent('Переход на форму регистрации');
                 Navigator.pushNamed(context, '/RegistrationFormScreen');
               },
               child: const Text(

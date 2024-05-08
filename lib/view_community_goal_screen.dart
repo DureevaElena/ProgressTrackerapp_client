@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 
 class ViewCommunityGoalScreen extends StatelessWidget {
   const ViewCommunityGoalScreen({Key? key}) : super(key: key);
@@ -144,6 +145,7 @@ class ViewCommunityGoalScreen extends StatelessWidget {
                 alignment: Alignment.bottomLeft,
                 child: IconButton(
                   onPressed: () {
+                    AppMetrica.reportEvent('Добавить к себе цели из "Общие"');
                     //Navigator.pushNamed(context, '/HomeScreenUnauthorizedUser');
                   },
                   icon: const Row(

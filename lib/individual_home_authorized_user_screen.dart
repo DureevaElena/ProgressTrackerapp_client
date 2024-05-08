@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 
 class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
   const IndividualHomeScreenAuthorizedUser({Key? key}) : super(key: key);
@@ -181,6 +182,7 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: IconButton(
                           onPressed: () {
+                            AppMetrica.reportEvent('Переход цели во вкладку "Общее"');
                             // Действие при нажатии на иконку для отправки контейнера (цели) на вкладку "Общие"
                           },
                           icon: Icon(Icons.file_upload, color: const Color.fromARGB(255, 25, 25, 230), size: 32),
@@ -196,6 +198,7 @@ class IndividualHomeScreenAuthorizedUser extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          AppMetrica.reportEvent('Создание новой цели');
           Navigator.pushNamed(context, '/CreateGoalScreen');
         },
         backgroundColor: const Color.fromARGB(255, 25, 25, 230),
