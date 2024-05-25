@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 
-class AdminUsersScreen extends StatelessWidget {
-  const AdminUsersScreen({Key? key}) : super(key: key);
+class AdminCommunityDoalsScreen extends StatelessWidget {
+  const AdminCommunityDoalsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class AdminUsersScreen extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () {
-                  //ты в этой вкладке
+                  Navigator.pushNamed(context, '/AdminUsersScreen');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 14, 122, 218),
@@ -68,7 +68,7 @@ class AdminUsersScreen extends StatelessWidget {
 
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/AdminCommunityDoalsScreen');
+                  //ты в этой вкладке
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 194,217,238),
@@ -89,37 +89,54 @@ class AdminUsersScreen extends StatelessWidget {
           ),
           SizedBox(height: 20),
 
-          //какой должна иметь вид ()
-          DataTable(
-              columns: const [
-                DataColumn(label: Text('ID', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
-                DataColumn(label: Text('Имя', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
-                DataColumn(label: Text('')),
-              ],
-              rows: [
-                DataRow(cells: [
-                  DataCell(Text('001', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
-                  DataCell(Text('Имя1', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
-                  DataCell(IconButton(
-                    icon: Icon(Icons.delete_rounded, size: 35, color: Colors.black),
-                    onPressed: () {
-                      // Действие при нажатии на кнопку "удалить"
-                    },
-                  )),
-                ]),
-                DataRow(cells: [
-                  DataCell(Text('002', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
-                  DataCell(Text('Имя2', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
-                  DataCell(IconButton(
-                    icon: Icon(Icons.delete_rounded, size: 35, color: Colors.black),
-                    onPressed: () {
-                      // Действие при нажатии на кнопку "удалить"
-                    },
-                  )),
-                ]),
-              ],
-            ),
+          Expanded(
+              child: ListView(
+                children:  [
+                  ListTile(
+                    title: Text('Как сварить яйца',  style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30)),
+                    subtitle: Text('eddlove', style: TextStyle(fontFamily: 'Montserrat', color: Colors.grey, fontSize: 15)),
+                    trailing: IconButton(
+                      onPressed: () {
+                        // Удаление из списка
+                      },
+                      icon: Icon(Icons.delete_rounded),
+                      color: Colors.black, 
+                      iconSize: 30,
+                    ),
+                  ),
+                  ListTile(
+                    title: Text('Цветы из лент',  style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30)),
+                    subtitle: Text('floverwin', style: TextStyle(fontFamily: 'Montserrat', color: Colors.grey, fontSize: 15)),
+                    trailing: IconButton(
+                      onPressed: () {
+                        // Удаление из списка
+                      },
+                      icon: Icon(Icons.delete_rounded),
+                      color: Colors.black, 
+                      iconSize: 30,
+                    ),
+                  ),
+                  ListTile(
+                    title: Text('Одежда для кукл', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30)),
+                    subtitle: Text('moatyun', style: TextStyle(fontFamily: 'Montserrat', color: Colors.grey, fontSize: 15)),
+                    trailing: IconButton(
+                      onPressed: () {
+                        // Удаление из списка
+                      },
+                      icon: Icon(Icons.delete_rounded),
+                      color: Colors.black, 
+                      iconSize: 30,
+                    ),
+                  ),
+                ],
+              ),
+          ),
           
+          
+
+          
+
+        
 
         ],
         ),
@@ -128,3 +145,6 @@ class AdminUsersScreen extends StatelessWidget {
     );
   }
 }
+
+
+
