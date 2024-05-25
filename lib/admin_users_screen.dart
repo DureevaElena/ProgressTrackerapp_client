@@ -89,6 +89,38 @@ class AdminUsersScreen extends StatelessWidget {
           ),
           SizedBox(height: 20),
 
+          //какой должна иметь вид ()
+        DataTable(
+              columns: const [
+                DataColumn(label: Text('ID', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
+                DataColumn(label: Text('Имя', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
+                DataColumn(label: Text('')),
+              ],
+              rows: [
+                DataRow(cells: [
+                  DataCell(Text('001', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
+                  DataCell(Text('Имя1', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
+                  DataCell(IconButton(
+                    icon: Icon(Icons.delete_rounded, size: 35, color: Colors.black),
+                    onPressed: () {
+                      // Действие при нажатии на кнопку "удалить"
+                    },
+                  )),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('002', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
+                  DataCell(Text('Имя2', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
+                  DataCell(IconButton(
+                    icon: Icon(Icons.delete_rounded, size: 35, color: Colors.black),
+                    onPressed: () {
+                      // Действие при нажатии на кнопку "удалить"
+                    },
+                  )),
+                ]),
+              ],
+            ),
+          
+
         ],
         ),
       ),

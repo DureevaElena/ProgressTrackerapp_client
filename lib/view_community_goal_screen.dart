@@ -22,7 +22,7 @@ class ViewCommunityGoalScreen extends StatelessWidget {
         
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(40.0),
-          child: Column( // Оборачиваем Row в Column
+          child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
