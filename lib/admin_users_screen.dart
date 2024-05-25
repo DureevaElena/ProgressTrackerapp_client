@@ -21,7 +21,7 @@ class AdminUsersScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(onPressed: (){
-            //Navigator.pushNamed(context, '/PersonalInformationUserScreen');
+            Navigator.pushNamed(context, '/AdminPersonalInformationScreen');
           }, 
           icon: Icon(Icons.account_box_outlined),
           color: Colors.black,

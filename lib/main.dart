@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 
 import 'package:appmetrica_plugin/appmetrica_plugin.dart';
+import 'package:progresstrackerapp/admin_personal_information_screen.dart';
 import 'package:progresstrackerapp/admin_users_screen.dart';
 
 import 'authorization_form_screen.dart';
@@ -73,6 +74,7 @@ class MyApp extends StatelessWidget {
         '/ViewCommunityGoalStagesScreen':(context) => const ViewCommunityGoalStagesScreen(),    
         '/CurrentGoalsScreen':(context) => const CurrentGoalsScreen(),   
         '/AdminUsersScreen':(context) => const AdminUsersScreen(),
+        '/AdminPersonalInformationScreen':(context) => const AdminPersonalInformationScreen(),
       },
     );
   }
