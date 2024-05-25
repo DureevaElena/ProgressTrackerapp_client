@@ -90,34 +90,24 @@ class AdminUsersScreen extends StatelessWidget {
           SizedBox(height: 20),
 
           //какой должна иметь вид ()
-          DataTable(
-              columns: const [
-                DataColumn(label: Text('ID', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
-                DataColumn(label: Text('Имя', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
-                DataColumn(label: Text('')),
-              ],
-              rows: [
-                DataRow(cells: [
-                  DataCell(Text('001', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
-                  DataCell(Text('Имя1', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
-                  DataCell(IconButton(
-                    icon: Icon(Icons.delete_rounded, size: 35, color: Colors.black),
-                    onPressed: () {
-                      // Действие при нажатии на кнопку "удалить"
-                    },
-                  )),
-                ]),
-                DataRow(cells: [
-                  DataCell(Text('002', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
-                  DataCell(Text('Имя2', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30))),
-                  DataCell(IconButton(
-                    icon: Icon(Icons.delete_rounded, size: 35, color: Colors.black),
-                    onPressed: () {
-                      // Действие при нажатии на кнопку "удалить"
-                    },
-                  )),
-                ]),
-              ],
+          Expanded(
+              child: ListView.builder(
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: Text('${index + 1}', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30)),
+                    title: Text('${['egglove', 'floverwin', 'moatyun'][index]}', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30)),
+                    trailing: IconButton(
+                      onPressed: () {
+                        // Действие при нажатии на кнопку "Удалить"
+                      },
+                      icon: Icon(Icons.delete_rounded),
+                      color: Colors.black, 
+                      iconSize: 30,
+                    ),
+                  );
+                },
+              ),
             ),
           
 

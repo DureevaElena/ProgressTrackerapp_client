@@ -93,7 +93,7 @@ class AdminCommunityDoalsScreen extends StatelessWidget {
               child: ListView(
                 children:  [
                   ListTile(
-                    title: Text('Как сварить яйца',  style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30)),
+                    title: Text('Как сварить яйца', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30)),
                     subtitle: Text('eddlove', style: TextStyle(fontFamily: 'Montserrat', color: Colors.grey, fontSize: 15)),
                     trailing: IconButton(
                       onPressed: () {
@@ -105,7 +105,7 @@ class AdminCommunityDoalsScreen extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    title: Text('Цветы из лент',  style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30)),
+                    title: Text('Цветы из лент', style: TextStyle(fontFamily: 'Montserrat', color: Colors.black, fontSize: 30)),
                     subtitle: Text('floverwin', style: TextStyle(fontFamily: 'Montserrat', color: Colors.grey, fontSize: 15)),
                     trailing: IconButton(
                       onPressed: () {
