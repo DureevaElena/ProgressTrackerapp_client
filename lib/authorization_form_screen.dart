@@ -60,28 +60,35 @@ class AuthorizationFormScreen extends StatelessWidget {
             ),
             const SizedBox(height: 15,),
 
-            const Padding(padding: EdgeInsets.only(left: 10),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text('Пароль',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black,
-              ),),
-            ),),
-
-            const TextField(
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                  borderSide: BorderSide(color: Colors.black,width: 2.0),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                  borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160),width: 2.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Пароль',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
+
+            const TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  borderSide: BorderSide(color: Colors.black, width: 2.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160), width: 2.0),
+                ),
+              ),
+            ),
+
+
             SizedBox(height: 5,),
 
             Align(alignment: Alignment.bottomRight,
