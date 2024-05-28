@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
         '/RegistrationFormScreen':(context) => const RegistrationFormScreen(),
         '/VerificationCodeFormScreen':(context) => const VerificationCodeFormScreen(),
         '/ChangePasswordFormScreen':(context) => const ChangePasswordFormScreen(),
-        '/IndividualHomeScreenAuthorizedUser':(context) => const IndividualHomeScreenAuthorizedUser(),
+        '/IndividualHomeScreenAuthorizedUser':(context) =>  IndividualHomeScreenAuthorizedUser(),
         '/PersonalInformationUserScreen':(context) => const PersonalInformationUserScreen(),
         '/EditProfileScreen':(context) => const EditProfileScreen(),
         '/CompletedGoalsScreen':(context) => const CompletedGoalsScreen(),
