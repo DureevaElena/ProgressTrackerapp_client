@@ -39,38 +39,38 @@ class _ViewGoalStagesScreenState extends State<ViewGoalStagesScreen> {
             size: 30,
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              // Действие при нажатии кнопки удаления
-            },
-            icon: const Icon(
-              Icons.delete_rounded,
-              color: Colors.black,
-              size: 35,
-            ),
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       // Действие при нажатии кнопки удаления
+        //     },
+        //     icon: const Icon(
+        //       Icons.delete_rounded,
+        //       color: Colors.black,
+        //       size: 35,
+        //     ),
+        //   ),
+        // ],
 
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(40.0),
-          child: Column( // Оборачиваем Row в Column
+          child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/ViewingCreatedGoalScreen');
-                    },
-                    child: const Text(
-                      'Описание',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
+                  // TextButton(
+                  //   onPressed: () {
+                  //     Navigator.pushNamed(context, '/ViewingCreatedGoalScreen');
+                  //   },
+                  //   child: const Text(
+                  //     'Описание',
+                  //     style: TextStyle(
+                  //       color: Colors.black,
+                  //       fontSize: 16,
+                  //     ),
+                  //   ),
+                  // ),
                   TextButton(
                     onPressed: () {
                       //Navigator.pushNamed(context, '/ViewCommunityGoalStagesScreen');

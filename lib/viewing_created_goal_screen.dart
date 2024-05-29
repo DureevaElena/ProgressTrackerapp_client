@@ -1,10 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:progresstrackerapp/Constants/api.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class ViewingCreatedGoalScreen extends StatelessWidget {
-  const ViewingCreatedGoalScreen({Key? key}) : super(key: key);
+import 'package:progresstrackerapp/Models/todo.dart';
+import 'package:progresstrackerapp/Widgets/todo_container.dart';
+
+
+
+class ViewingCreatedGoalScreen extends StatefulWidget{
+  ViewingCreatedGoalScreen({Key? key}) : super(key: key);
+  
+  @override
+  _ViewingCreatedGoalScreen createState() => _ViewingCreatedGoalScreen();
+}
+
+class _ViewingCreatedGoalScreen extends State<ViewingCreatedGoalScreen> {
+
+
 
   @override
   Widget build(BuildContext context) {
+    //final String title = ModalRoute.of(context)!.settings.arguments as String;
+    //print("id this = $title");
+
+    final Map<String, String> args = ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+    final String title = args['title']!;
+    final String desc = args['desc']!;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
@@ -93,11 +115,11 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
 
             SizedBox(height: 25,),
 
-            const Padding(padding: EdgeInsets.only(left: 20),
+            Padding(padding: EdgeInsets.only(left: 20),
             child: Align(
               alignment: Alignment.center,
-                child: Text('Принципы ООП',
-                  style: TextStyle(
+                child: Text('$title',
+                  style: const TextStyle(
                     fontSize: 35,
                     color: Colors.black,
                   ),
@@ -108,11 +130,11 @@ class ViewingCreatedGoalScreen extends StatelessWidget {
             
             SizedBox(height: 15,),
 
-            const Padding(padding: EdgeInsets.only(left: 20),
+            Padding(padding: EdgeInsets.only(left: 20),
             child: Align(
               alignment: Alignment.centerLeft,
-                child: Text('Это цель принципы ООП, это цель принципы ООП, это цель принципы ООП',
-                  style: TextStyle(
+                child: Text('$desc',
+                  style: const TextStyle(
                     fontSize: 20,
                     color: Colors.black,
                   ),  

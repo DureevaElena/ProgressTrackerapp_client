@@ -38,12 +38,41 @@ class _IndividualHomeScreenAuthorizedUser extends State<IndividualHomeScreenAuth
         isLoading = false;
         
       });
+      
+      // if (myTodos.length > 1) {
+      //   final Todo secondTodo = myTodos[0];
+      //   print('ID: ${secondTodo.id}, Title: ${secondTodo.title}, Desc: ${secondTodo.desc}, IsDone: ${secondTodo.isDone}, Date: ${secondTodo.date}');
+      // } else {
+      //   print('The myTodos list does not contain enough elements.');
+      // }
 
-    }
+      // myTodos.forEach((todo) {
+      //   print('ID: ${todo.id}, Title: ${todo.title}, Desc: ${todo.desc}, IsDone: ${todo.isDone}, Date: ${todo.date}');
+      // });
+
+      
+      }
     catch(e){
       print('Error is $e');
 
     }
+  }
+  
+
+  void delete_todo(String id) async{
+    try{
+      http.Response response = await http.delete(Uri.parse(api + "/" + id));
+      print(response.statusCode);
+      setState(() {
+        myTodos = [];
+      });
+      fetchData();
+    }
+    catch(e){
+      print(e);
+      
+    }
+
   }
 
   @override
@@ -51,10 +80,6 @@ class _IndividualHomeScreenAuthorizedUser extends State<IndividualHomeScreenAuth
     fetchData();
     super.initState();
   }
-  
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +113,7 @@ class _IndividualHomeScreenAuthorizedUser extends State<IndividualHomeScreenAuth
           ),
         ),
       ),
-      body:Padding(
+      body: Padding(
       padding: EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,28 +164,27 @@ class _IndividualHomeScreenAuthorizedUser extends State<IndividualHomeScreenAuth
                   ),
                 ),
               ),
-
-
-
-
-
             ],
           ),
           SizedBox(height: 20),
 
           Expanded(
             child: isLoading
-                ? CircularProgressIndicator()
-                : ListView(
-                    children: myTodos.map((e) {
-                      return TodoContainer(
-                          id: e.id, 
-                          title: e.title, 
-                          desc: e.desc, 
-                          isDone: e.isDone);
-                    }).toList(),
-                  ),
+              ? CircularProgressIndicator()
+              : ListView(
+                  children: myTodos.map((e) {
+                    return TodoContainer(
+                      id: e.id,
+                      onPress: () => delete_todo(e.id.toString()),
+                      title: e.title, 
+                      desc: e.desc, 
+                      isDone: e.isDone);
+                  }).toList(),
+                ),
           ),
+
+
+
 
           // GestureDetector(
           //     onTap: () {
@@ -263,10 +287,6 @@ class _IndividualHomeScreenAuthorizedUser extends State<IndividualHomeScreenAuth
           ],
         ),
       ),
-
-    
-
-
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
