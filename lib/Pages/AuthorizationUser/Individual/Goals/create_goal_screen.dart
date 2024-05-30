@@ -16,10 +16,6 @@ class CreateGoalScreen extends StatefulWidget{
 }
 
 class _CreateGoalScreen extends State<CreateGoalScreen> {
-  //TextEditingController titleController = TextEditingController();
-  //TextEditingController descriptionController = TextEditingController();
-
-
   List<Todo> myTodos = [];
   bool isLoading = true;
   void fetchData() async{
@@ -70,7 +66,6 @@ class _CreateGoalScreen extends State<CreateGoalScreen> {
       } else{
         print("Something went wrong");
       }
-
 
 
     }

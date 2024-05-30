@@ -148,6 +148,7 @@ class _IndividualHomeScreenAuthorizedUser extends State<IndividualHomeScreenAuth
 
               TextButton(
                 onPressed: () {
+                  AppMetrica.reportEvent('Переход во вкладку "Общие"');
                   Navigator.pushNamed(context, '/CommunityHomeScreenAuthorizedUser');
                 },
                 style: ElevatedButton.styleFrom(

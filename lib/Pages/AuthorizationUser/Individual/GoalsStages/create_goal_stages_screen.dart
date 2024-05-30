@@ -117,42 +117,6 @@ class CreateGoalStagesScreen extends StatelessWidget {
                 ),
               ],
             ),
-
-            SizedBox(height: 15,),
-
-            Padding(padding: EdgeInsets.only(left: 20),
-            child: Align(
-              alignment: Alignment.centerLeft,
-                child: Text('Дата завершения',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
-                  ),  
-                ),
-              ),
-            ),
-
-            Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Colors.black,width: 2.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160),width: 2.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ],
         ), 
       ),
