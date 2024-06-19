@@ -52,8 +52,25 @@ createStageNote(User user, String titlestage, String notestage, int idnote) asyn
   }
 }
 
+
+Future<bool> updateStageNote(User user, StageNote stageNote) async {
+  var uri = Uri.parse(noteEndpoint + "deleteUpdateStageNote/${stageNote.id}/");
+
+  var res = await http.put(uri, body: stageNote.toJson(), headers: {
+    'Authorization': ' Token ${user.token}',
+  });
+  // print(res.body);
+  // print(json);
+  if (res.statusCode == 200) {
+    // var json = jsonDecode(res.body);
+
+    return true;
+  }
+  return false;
+}
+
 Future<bool> deleteStageNote(User user, int noteID) async {
-  var uri = Uri.parse(noteEndpoint + "deleteUpdateNote/${noteID}/");
+  var uri = Uri.parse(noteEndpoint + "deleteUpdateStageNote/${noteID}/");
 
   var res = await http.delete(uri, headers: {
     'Authorization': ' Token ${user.token}',

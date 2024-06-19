@@ -163,9 +163,15 @@ class _HomePageState extends State<HomePage> {
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => ViewNoteScreen(note: note),
+                              builder: (context) => ViewNoteScreen(note: note, user: user),
                             ),
-                          );
+                          ).then((result) {
+                            if (result != null && result == true) {
+                              setState(() {
+                                notes.removeWhere((item) => item.id == note.id);
+                              });
+                            }
+                          });
                         },
                         child: Container(
                           margin: EdgeInsets.all(8),
