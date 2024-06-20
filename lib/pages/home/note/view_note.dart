@@ -3,19 +3,47 @@ import 'package:simpleengineering/api/note/note_api.dart';
 import 'package:simpleengineering/model/note_model.dart';
 import 'package:simpleengineering/model/user_models.dart';
 import 'package:simpleengineering/pages/home/etap/etap.dart';
-
 import 'package:simpleengineering/pages/home/home.dart';
 import 'package:simpleengineering/pages/home/note/update_note_csreen.dart';
 
-
-class ViewNoteScreen extends StatelessWidget {
+class ViewNoteScreen extends StatefulWidget {
   final Note note;
   final User user;
 
-  const ViewNoteScreen({Key? key, required this.note, required this.user}) : super(key: key);
+  ViewNoteScreen({Key? key, required this.note, required this.user}) : super(key: key);
+
+  @override
+  _ViewNoteScreenState createState() => _ViewNoteScreenState();
+}
+
+class _ViewNoteScreenState extends State<ViewNoteScreen> {
+  late int noteId; 
+  
+
+  @override
+  void initState() {
+    super.initState();
+    noteId = widget.note.id;
+  }
+
+  String getStatusText(int status) {
+  switch (status) {
+    case 1:
+      return "Текущие";
+    case 2:
+      return "Просроченные";
+    case 3:
+      return "Завершенные";
+    default:
+      return "Неизвестный статус";
+  }
+  } 
+
 
   @override
   Widget build(BuildContext context) {
+    Note noteetap = widget.note;
+    
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
@@ -58,7 +86,7 @@ class ViewNoteScreen extends StatelessWidget {
               );
 
               if (result == "confirm") {
-                var success = await deleteNote(user, note.id); // Передаем токен пользователя для удаления заметки
+                var success = await deleteNote(widget.user, widget.note.id); // Передаем токен пользователя для удаления заметки
                 if (success) {
                   // Удаление успешно
                   Navigator.of(context).pop(true); // Возвращаем успешный результат удаления
@@ -104,7 +132,7 @@ class ViewNoteScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => EtapNoteScreen(noteId: note.id),
+                          builder: (context) => EtapNoteScreen(noteId: noteId, note: noteetap,),
                         ),
                       );
                     },
@@ -147,12 +175,12 @@ class ViewNoteScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${note.title}",
+                  "${widget.note.title}",
                   style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 15),
                 Text(
-                  "${note.note}",
+                  "${widget.note.note}",
                   style: TextStyle(fontSize: 20),
                 ),
                 SizedBox(height: 15),
@@ -161,11 +189,16 @@ class ViewNoteScreen extends StatelessWidget {
                     Icon(Icons.calendar_month_outlined, size: 30),
                     SizedBox(width: 10),
                     Text(
-                      "${note.dataend}",
+                      "${widget.note.dataend}",
                       style: TextStyle(fontSize: 20),
                     ),
                   ],
                 ),
+                SizedBox(height: 15),
+                Text(
+                  getStatusText(widget.note.status),
+                  style: TextStyle(fontSize: 20),
+                )
               ],
             ),
             SizedBox(height: 50),
@@ -176,7 +209,7 @@ class ViewNoteScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => UpdateNoteScreen(note: note),
+                        builder: (context) => UpdateNoteScreen(note: widget.note),
                       ),
                     );
                   },

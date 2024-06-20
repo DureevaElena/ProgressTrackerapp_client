@@ -1,3 +1,7 @@
+//ПРОСРОЧЕННЫЕ
+//ЗАВЕРШЕННЫЕ
+//ТЕКУЩИЕ
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simpleengineering/api/auth/auth_api.dart';
@@ -7,19 +11,22 @@ import 'package:simpleengineering/model/user_cubit.dart';
 import 'package:simpleengineering/model/user_models.dart';
 import 'package:simpleengineering/pages/home/account/personal.dart';
 import 'package:simpleengineering/pages/home/cat2.dart';
+import 'package:simpleengineering/pages/home/home.dart';
 import 'package:simpleengineering/pages/home/note/create_note_screen.dart';
 import 'package:simpleengineering/pages/home/note/update_note_csreen.dart';
 import 'package:simpleengineering/pages/home/note/view_note.dart';
 import 'package:simpleengineering/pages/login_page.dart';
 import 'package:simpleengineering/there.dart';
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+
+
+class OverdateNotePage extends StatefulWidget {
+  const OverdateNotePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<OverdateNotePage> createState() => _OverdateNoteState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _OverdateNoteState extends State<OverdateNotePage> {
   late User user;
   List<Note> notes = [];
 
@@ -27,12 +34,12 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     user = context.read<UserCubit>().state;
     super.initState();
-    loadNotes(); 
+    loadNotes(); // Загружаем заметки при инициализации
   }
 
   Future<void> loadNotes() async {
     try {
-      List<Note> loadedNotes = await getNotes(user, 1); 
+      List<Note> loadedNotes = await getStatusNotes(user, 2);
       setState(() {
         notes = loadedNotes;
       });
@@ -41,23 +48,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  Future<void> updateCatAndSaveNote(Note note) async {
-    note.cat = 2;
-    var a = await updateNote(user, note);
-    if (a != null) {
-      setState(() {});
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(content: Text("Category set to 2 and Note Saved")),
-      );
-      setState(() {});
-    } else {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(content: Text("Note not saved")),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,11 +73,11 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => PersonalPage(user: user,),
+                              builder: (context) => PersonalPage(user: user),
                             ),
                           );
             },
-            icon: Icon(Icons.account_box_outlined),
+            icon: Icon(Icons.arrow_back_rounded),
             color: Colors.black,
             iconSize: 40,
           ),
@@ -100,78 +90,13 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: notes.isEmpty
+      body: notes.isEmpty 
           ? Center(
-            child: Text(
-              'Нет созданных целей',
-              style: TextStyle(fontSize: 20),
-            ),
-          )
+              child: CircularProgressIndicator(),
+            )
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => Cat(),
-                            ),
-                          );
-                        },
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 14, 122, 218)),
-                          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                              EdgeInsets.symmetric(vertical: 8, horizontal: 20)),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                        child: Text(
-                          "Индивидуальные",
-                          style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 10), // Пространство между кнопками
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => Cat(),
-                            ),
-                          );
-                        },
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 194, 217, 238)),
-                          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                              EdgeInsets.symmetric(vertical: 8, horizontal: 20)),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                        child: Text(
-                          "Общие",
-                          style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            color: Colors.black,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 Expanded(
                   child: ListView.builder(
                     itemCount: notes.length,
@@ -229,21 +154,13 @@ class _HomePageState extends State<HomePage> {
                                               ? note.note.substring(0, 20) + "..."
                                               : note.note,
                                         ),
-                                      Text("${note.status}"),
+                                      Text("${note.cat}"),
                                     ],
                                   ),
                                 ),
                               ),
-                              SizedBox(width: 8), // Пространство между текстом и кнопкой
-                              IconButton(
-                                onPressed: () async {
-                                  await updateCatAndSaveNote(note);
-                                },
-                                icon: Icon(
-                                  Icons.language,
-                                  color: Colors.black,
-                                ),
-                              ),
+                              
+                              
                             ],
                           ),
                         ),
@@ -253,19 +170,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => CreateNoteScreen(),
-            ),
-          );
-        },
-        backgroundColor: const Color.fromARGB(255, 25, 25, 230),
-        child: Icon(Icons.add, color: Colors.white),
-        shape: CircleBorder(),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

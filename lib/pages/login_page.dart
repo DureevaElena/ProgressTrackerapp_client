@@ -147,7 +147,7 @@ class _SignInPageState extends State<SignInPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ForgotPassPage()),
+                    MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
                   );
                 },
                 child: const Text(

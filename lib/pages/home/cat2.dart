@@ -29,23 +29,6 @@ class _CatState extends State<Cat> {
     super.initState();
   }
 
-  
-
-  // Future<void> addNoteToUser(Note note) async {
-  // var newNote = await createNote(user, note.title, note.note, 1);
-  // if (newNote != null) {
-  //   setState(() {});
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) => AlertDialog(content: Text("Заметка добавлена в ваш список")),
-  //   );
-  // } else {
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) => AlertDialog(content: Text("Не удалось добавить заметку")),
-  //   );
-  // }
-  // }
 
 
   @override
@@ -58,19 +41,7 @@ class _CatState extends State<Cat> {
         title: Text(
             "Home of ${user.first_name} ${user.last_name} ${user.nickname}"),
         backgroundColor: Color.fromARGB(255, 212, 28, 28),
-        actions: [
-          OutlinedButton(
-              onPressed: () async {
-                await logOut(user.token!);
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => SignInPage()),
-                    (route) => false);
-              },
-              child: Text(
-                "Logout",
-                style: TextStyle(color: Colors.white),
-              ))
-        ],
+        
       ),
       body: FutureBuilder<List<Note>>(
         future: getNotesCommunity(user),
@@ -129,15 +100,15 @@ class _CatState extends State<Cat> {
                                     : note.note,
                               ),
                               Text("$cat"),
-                              // OutlinedButton(
-                              //   onPressed: () async {
-                              //     await addNoteToUser(note);
-                              //   },
-                              //   child: Text(
-                              //     "Set Cat to 1",
-                              //     style: TextStyle(color: Colors.black),
-                              //   ),
-                              // ),
+                              OutlinedButton(
+                                onPressed: () async {
+                                  
+                                },
+                                child: Text(
+                                  "Set Cat to 1",
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                              ),
                             ],
                           ),
                         ),

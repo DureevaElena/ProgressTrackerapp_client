@@ -1,108 +1,81 @@
 import 'package:flutter/material.dart';
-import 'package:simpleengineering/first_screen.dart';
-import 'package:simpleengineering/there.dart';
-import 'package:simpleengineering/widgets/fields.dart';
-import 'package:simpleengineering/widgets/texxt_button.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-import 'login_page.dart';
+import 'change_password.dart'; // Импортируем страницу с изменением пароля
 
-class ForgotPassPage extends StatelessWidget {
-  const ForgotPassPage({Key? key}) : super(key: key);
+const String baseUrl = "http://10.0.2.2:8000"; // Обратите внимание на базовый URL
 
+class ForgotPasswordPage extends StatefulWidget {
+  @override
+  _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
+}
+
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+  final TextEditingController _emailController = TextEditingController();
+
+  Future<void> _requestPasswordReset() async {
+    try {
+      final response = await http.post(
+        Uri.parse('$baseUrl/request-password-reset/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'email': _emailController.text,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        String encodedPk = responseData['encoded_pk'];
+        String token = responseData['token'];
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChangePasswordPage(encodedPk: encodedPk, token: token),
+          ),
+        );
+      } else {
+        final responseData = jsonDecode(response.body);
+        if (responseData.containsKey('message')) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(responseData['message'])),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Unexpected error occurred')),
+          );
+        }
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 100,
-        leading: IconButton(
-          onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) {
-                    return HomeScreenUnauthorizedUser();
-                  },
-                ));
-        }, icon: const Icon(
-          Icons.arrow_back,
-          color: Colors.black ,
-          size: 30,
-          ),
-        ),
-        title: const Text('ProgressTracker', 
-        style: TextStyle(
-          fontFamily: 'Montserrat', 
-          fontSize: 35)
-        ),
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(2.0),
-          child: Container(
-            color: Colors.black,
-            height: 2.0,
-          ),
-        ),
+        title: Text('Request Password Reset'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          children: [
-
-            SizedBox(height: 30,),
-            const Text('Восстановление пароля',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.black,
-                ),
+          children: <Widget>[
+            TextField(
+              controller: _emailController,
+              decoration: InputDecoration(labelText: 'Email'),
             ),
-            SizedBox(height: 50,),
-            const Padding(padding: EdgeInsets.only(left: 10),
-            child: Align(
-              alignment: Alignment.centerLeft,
-                child: Text('e-mail',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
-                  ),  
-                ),
-              ),
-            ),
-
-            const TextField(
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                  borderSide: BorderSide(color: Colors.black,width: 2.0),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                  borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160),width: 2.0),
-                ),
-              ),
-            ),
-            SizedBox(height: 15,),
-
-            
-            Align(alignment: Alignment.bottomLeft,
-              child: TextButton(
-                onPressed: () {
-                  //Navigator.pushNamed(context, '/VerificationCodeFormScreen');
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 25, 25, 230),
-                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                ),
-                child: const Text(
-                  'Восстановить',
-                  style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _requestPasswordReset,
+              child: Text('Reset Password'),
             ),
           ],
-        ), 
+        ),
       ),
     );
   }

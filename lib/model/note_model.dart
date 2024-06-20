@@ -22,9 +22,9 @@ class Note {
       json["id"],
       Author.fromJson(json["author"]),
       json["title"],
-      json["note"],
+      json["note"] ?? "",
       json["cat"],
-      json["dataend"],
+      json["dataend"] ?? "",
       json["status"], 
     );
   }
@@ -53,6 +53,7 @@ class StageNote {
   String titlestage;
   String notestage;
   int idnote;
+  int done;
  
   StageNote(
     this.id,
@@ -60,6 +61,7 @@ class StageNote {
     this.titlestage,
     this.notestage,
     this.idnote,
+    this.done,
 
   );
   factory StageNote.fromJson(Map json) {
@@ -69,10 +71,7 @@ class StageNote {
       json["titlestage"],
       json["notestage"],
       json["idnote"],
-  
-      
-      
-      
+      json["done"],
     );
   }
 
@@ -83,9 +82,7 @@ class StageNote {
       "titlestage": titlestage,
       "notestage": notestage,
       "idnote":"$idnote",
-
-      
-      
+      "done":"$done" 
     };
   } 
 }
@@ -112,4 +109,34 @@ class Author {
       json["email"],
     );
   }
+}
+
+
+
+
+class Password {
+  String encoded_pk;
+  String token;
+
+ 
+  Password(
+
+    this.encoded_pk,
+    this.token,
+
+
+  );
+  factory Password.fromJson(Map json) {
+    return Password(
+      json["encoded_pk"],
+      json["token"],
+    );
+  }
+
+  Map<String, String> toJson() {
+    return {
+      "titlestage": encoded_pk,
+      "token": token,
+    };
+  } 
 }

@@ -1,15 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:simpleengineering/model/note_model.dart';
 import 'package:simpleengineering/pages/home/etap/etap.dart';
+import 'package:simpleengineering/pages/home/etap/viewcat2_stagenote.dart';
 import 'package:simpleengineering/pages/home/home.dart';
 
-class CatViewNoteScreen extends StatelessWidget {
+
+class CatViewNoteScreen extends StatefulWidget {
   final Note note;
 
-  const CatViewNoteScreen({Key? key, required this.note}) : super(key: key);
+
+  CatViewNoteScreen({Key? key, required this.note}) : super(key: key);
+
+  @override
+  _CatViewNoteScreenState createState() => _CatViewNoteScreenState();
+}
+
+class _CatViewNoteScreenState extends State<CatViewNoteScreen> {
+  late int noteId; 
+
+  
+
+  @override
+  void initState() {
+    super.initState();
+    noteId = widget.note.id;
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    Note note = widget.note;
+
+  
     return Scaffold(
       appBar: AppBar(
         title: Text("View Note"),
@@ -43,11 +65,11 @@ class CatViewNoteScreen extends StatelessWidget {
 
             OutlinedButton(
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => EtapNoteScreen(noteId: note.id),
-                      ),
-                    );
+                    // Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => CatEtapNoteScreen(note: note,),
+                    //   ),
+                    // );
                   },
                   child: Text(
                     "ЭТАПЫ",

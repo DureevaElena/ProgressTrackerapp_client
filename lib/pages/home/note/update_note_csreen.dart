@@ -28,19 +28,21 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
   DateTime? selectedDate;
 
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate ?? DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-    );
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-        dataendController.text = DateFormat('yyyy-MM-dd').format(selectedDate!);
-      });
-    }
+  final DateTime? picked = await showDatePicker(
+    context: context,
+    initialDate: selectedDate ?? DateTime.now(),
+    firstDate: DateTime(1900),
+    lastDate: DateTime.now().add(Duration(days: 36500)), // Например, +10 лет от текущей даты
+  );
+  if (picked != null && picked != selectedDate) {
+    setState(() {
+      selectedDate = picked;
+      dataendController.text = DateFormat('yyyy-MM-dd').format(selectedDate!);
+      selectedStatus = picked.isAfter(DateTime.now()) ? 1 : 2;
+    });
   }
+}
+
 
   @override
   void initState() {
@@ -59,6 +61,7 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
     noteController.dispose();
     dataendController.dispose();
     super.dispose();
+    
   }
 
   Future<void> updateNoteAndSave() async {
@@ -289,38 +292,7 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
                         ),
                       ),
                     ),
-                    DropdownButtonFormField<int>(
-              value: selectedStatus,
-              onChanged: (value) {
-                setState(() {
-                  selectedStatus = value!;
-                });
-              },
-              items: const [
-                DropdownMenuItem<int>(
-                  value: 1,
-                  child: Text('Текущие'),
-                ),
-                DropdownMenuItem<int>(
-                  value: 2,
-                  child: Text('Просроченные'),
-                ),
-                DropdownMenuItem<int>(
-                  value: 3,
-                  child: Text('Завершенные'),
-                ),
-              ],
-                      decoration: const InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Colors.black, width: 2.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160), width: 2.0),
-                        ),
-                      ),
-                    ),                   
+                                       
                   ],
                 ),
               ),

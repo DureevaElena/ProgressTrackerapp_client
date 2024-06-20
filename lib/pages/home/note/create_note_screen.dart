@@ -1,120 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:simpleengineering/api/note/note_api.dart';
-// import 'package:simpleengineering/model/user_cubit.dart';
-// import 'package:simpleengineering/model/user_models.dart';
-// import 'package:simpleengineering/pages/home/home.dart';
-
-// class CreateNoteScreen extends StatefulWidget {
-//   const CreateNoteScreen({super.key});
-
-//   @override
-//   State<CreateNoteScreen> createState() => _CreateNoteScreenState();
-// }
-
-// class _CreateNoteScreenState extends State<CreateNoteScreen> {
-//   TextEditingController titleController = TextEditingController();
-//   TextEditingController noteController = TextEditingController();
-//   int selectedCat = 1;
-//   late User user;
-//   @override
-//   void initState() {
-//     user = context.read<UserCubit>().state;
-//     super.initState();
-//   }
-
-//   @override
-//   void dispose() {
-//     titleController.dispose();
-//     noteController.dispose();
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         toolbarHeight: 100,
-//         leading: IconButton(
-//           onPressed: (){
-//             Navigator.of(context).push(MaterialPageRoute(
-//               builder: (context) {
-//                 return HomePage();
-//               },
-//             ));
-//           }, 
-//           icon: const Icon(
-//             Icons.arrow_back,
-//             color: Colors.black ,
-//             size: 30,
-//           ),
-//         ),
-//         title: const Text('Создать цель', 
-//         style: TextStyle(
-//           fontFamily: 'Montserrat', 
-//           fontSize: 35)
-//         ),
-        
-//         actions: [
-//           IconButton(
-//             onPressed: () async {
-//               if (titleController.text.isNotEmpty &&
-//                   noteController.text.isNotEmpty) {
-//                 var a = await createNote(
-//                   user,
-//                   titleController.text,
-//                   noteController.text,
-//                   selectedCat, //widget.note.id,
-//                 );
-//                 if (a) {
-//                   Navigator.of(context).pushAndRemoveUntil(
-//                     MaterialPageRoute(builder: (context) => HomePage()),
-//                     (route) => false,
-//                   );
-//                 }
-//               }
-//             },
-//             icon: Icon(
-//               Icons.check,
-//               color: Colors.black,
-//             ),
-//           ),
-//         ],
-//         bottom: PreferredSize(
-//           preferredSize: Size.fromHeight(2.0),
-//           child: Container(
-//             color: Colors.black,
-//             height: 2.0,
-//           ),
-//         ),
-//       ),
-
-
-//       body:
-      
-      
-      
-      
-//        Column(children: [
-//         Text("Title"),
-//         TextField(
-//           maxLines: 1,
-//           controller: titleController,
-//           decoration: InputDecoration(border: OutlineInputBorder()),
-//         ),
-//         Text("Note"),
-//         TextField(
-//           controller: noteController,
-//           maxLines: 50,
-//           minLines: 10,
-//           decoration: InputDecoration(border: OutlineInputBorder()),
-//         ),
-//       ]),
-//     );
-//   }
-// }
-
-
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -135,36 +18,52 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
   TextEditingController titleController = TextEditingController();
   TextEditingController noteController = TextEditingController();
   TextEditingController dataendController = TextEditingController();
-  //TextEditingController statuController = TextEditingController();
   
   int selectedCat = 1;
   int selectedStatus = 1;
 
   late User user;
   DateTime? selectedDate;
+  DateTime currentDate = DateTime.now();
 
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate ?? DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-    );
-    if (picked != null && picked != selectedDate) {
+  @override
+  void initState() {
+    super.initState();
+    user = context.read<UserCubit>().state;
+    // Установка начальной даты завершения и статуса
+    selectedDate = currentDate;
+    dataendController.text = DateFormat('yyyy-MM-dd').format(selectedDate!);
+    updateStatus();
+  }
+
+  void updateStatus() {
+    if (currentDate.isBefore(selectedDate!)) {
       setState(() {
-        selectedDate = picked;
-        dataendController.text = DateFormat('yyyy-MM-dd').format(selectedDate!);
+        selectedStatus = 1; 
+      });
+    } else {
+      setState(() {
+        selectedStatus = 2; 
       });
     }
   }
-  
-  
-  @override
-  void initState() {
-    user = context.read<UserCubit>().state;
-    super.initState();
-  }
 
+  Future<void> _selectDate(BuildContext context) async {
+  final DateTime? picked = await showDatePicker(
+    context: context,
+    initialDate: selectedDate ?? DateTime.now(),
+    firstDate: DateTime(1900),
+    lastDate: DateTime(2100), // Примерная граница в будущем
+  );
+  if (picked != null && picked != selectedDate && picked.isAfter(DateTime.now())) {
+    setState(() {
+      selectedDate = picked;
+      dataendController.text = DateFormat('yyyy-MM-dd').format(selectedDate!);
+      updateStatus(); // Обновляем статус при изменении даты
+    });
+  }
+}
+  
   @override
   void dispose() {
     titleController.dispose();
@@ -202,8 +101,7 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
         actions: [
           IconButton(
             onPressed: () async {
-              if (titleController.text.isNotEmpty &&
-                  noteController.text.isNotEmpty) {
+              
                 var a = await createNote(
                   user,
                   titleController.text,
@@ -220,7 +118,7 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                     (route) => false,
                   );
                 }
-              }
+              
             },
             icon: Icon(
               Icons.check,
@@ -383,51 +281,8 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                     SizedBox(height: 15,),
 
 
-                    const Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Статус',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    DropdownButtonFormField<int>(
-                      value: selectedStatus,
-                      onChanged: (newValue) {
-                        setState(() {
-                          selectedStatus = newValue!;
-                        });
-                      },
-                      items: const [
-                        DropdownMenuItem<int>(
-                          value: 1,
-                          child: Text('Текущие'),
-                        ),
-                        DropdownMenuItem<int>(
-                          value: 2,
-                          child: Text('Просроченные'),
-                        ),
-                        DropdownMenuItem<int>(
-                          value: 3,
-                          child: Text('Завершенные'),
-                        ),
-                      ],
-                      decoration: const InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Colors.black, width: 2.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Color.fromARGB(255, 160, 160, 160), width: 2.0),
-                        ),
-                      ),
-                    ),                   
+                    
+                                       
                   ],
                 ),
               ),
