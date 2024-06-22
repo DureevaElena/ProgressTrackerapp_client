@@ -143,16 +143,16 @@ class _CurrentNoteState extends State<CurrentNotePage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(note.title),
-                                      Text(note.author.nickname),
+                                      Text(note.titletodo),
+                                      Text(note.authortodo.nickname),
                                       Text("${note.id}"),
-                                      if (note.note != null) // Проверяем, не является ли note.note null
+                                      if (note.notetodo != null) // Проверяем, не является ли note.note null
                                         Text(
-                                          note.note.length > 20
-                                              ? note.note.substring(0, 20) + "..."
-                                              : note.note,
+                                          note.notetodo.length > 20
+                                              ? note.notetodo.substring(0, 20) + "..."
+                                              : note.notetodo,
                                         ),
-                                      Text("${note.cat}"),
+                                      Text("${note.cattodo}"),
                                     ],
                                   ),
                                 ),

@@ -23,8 +23,6 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
   int selectedStatus = 1;
   late User user;
   late Note note;
-
-
   DateTime? selectedDate;
 
   Future<void> _selectDate(BuildContext context) async {
@@ -41,17 +39,16 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
       selectedStatus = picked.isAfter(DateTime.now()) ? 1 : 2;
     });
   }
-}
-
+  }
 
   @override
   void initState() {
     user = context.read<UserCubit>().state;
     note = widget.note;
-    titleController.text = note.title;
-    noteController.text = note.note;
-    dataendController.text = "${note.dataend}";
-    selectedStatus = note.status;
+    titleController.text = note.titletodo;
+    noteController.text = note.notetodo;
+    dataendController.text = "${note.dataendtodo}";
+    selectedStatus = note.statustodo;
     super.initState();
   }
 
@@ -61,14 +58,12 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
     noteController.dispose();
     dataendController.dispose();
     super.dispose();
-    
   }
 
   Future<void> updateNoteAndSave() async {
-    note.title = titleController.text;
-    note.note = noteController.text;
-    note.dataend = dataendController.text;
-    note.status = selectedStatus;
+    note.titletodo = titleController.text;
+    note.notetodo = noteController.text;
+    note.dataendtodo = dataendController.text;
 
     var success = await updateNote(user, note);
     if (success) {
@@ -279,19 +274,7 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
                     SizedBox(height: 15,),
 
 
-                    const Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Статус',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
+                    
                                        
                   ],
                 ),

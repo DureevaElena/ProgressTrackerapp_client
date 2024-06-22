@@ -5,10 +5,6 @@ import 'package:simpleengineering/api/auth/auth_api.dart';
 import 'package:simpleengineering/first_screen.dart';
 import 'package:simpleengineering/model/user_cubit.dart';
 import 'package:simpleengineering/model/user_models.dart';
-import 'package:simpleengineering/pages/home/home.dart';
-import 'package:simpleengineering/there.dart';
-import 'package:simpleengineering/widgets/fields.dart';
-import 'package:simpleengineering/widgets/texxt_button.dart';
 
 import 'login_page.dart';
 

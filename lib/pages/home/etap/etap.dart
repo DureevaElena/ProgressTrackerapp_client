@@ -15,6 +15,7 @@ class EtapNoteScreen extends StatefulWidget {
   final int noteId;
   final Note note;
 
+
   const EtapNoteScreen({super.key, required this.noteId, required this.note});
 
   @override
@@ -46,23 +47,23 @@ class _EtapNoteScreenState extends State<EtapNoteScreen> {
  
   void calculateTotals() {
     totalNotes = notestages.length;
-    totalDone1 = notestages.where((stagenote) => stagenote.done == 1).length;
-    totalDone2 = notestages.where((stagenote) => stagenote.done == 2).length;
+    totalDone1 = notestages.where((stagenote) => stagenote.donetodo == 1).length;
+    totalDone2 = notestages.where((stagenote) => stagenote.donetodo == 2).length;
 
     // Логика для обновления статуса note в зависимости от этапов и даты завершения
     if (totalNotes == totalDone1) {
-      widget.note.status = 3;
+      widget.note.statustodo = 3;
       updateNoteStatus(); // Вызываем метод для обновления статуса заметки
     } else if (totalNotes >= 0) {
       DateTime currentDate = DateTime.now();
-      DateTime endDate = widget.note.dataend is DateTime
-        ? widget.note.dataend as DateTime
+      DateTime endDate = widget.note.dataendtodo is DateTime
+        ? widget.note.dataendtodo as DateTime
         : currentDate;
 
       if (endDate.isAfter(currentDate)) {
-        widget.note.status = 1; // Устанавливаем статус "Не завершено, но есть время"
+        widget.note.statustodo = 1; // Устанавливаем статус "Не завершено, но есть время"
       } else {
-        widget.note.status = 2; // Устанавливаем статус "Не завершено, время истекло"
+        widget.note.statustodo = 2; // Устанавливаем статус "Не завершено, время истекло"
       }
       updateNoteStatus(); // Вызываем метод для обновления статуса заметки
     }
@@ -101,7 +102,7 @@ class _EtapNoteScreenState extends State<EtapNoteScreen> {
           ),
         ),
 
-        title: Text("Статус: ${noteforcreatstage.status}"),
+        title: Text("Статус: ${noteforcreatstage.statustodo}"),
         
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(40.0),
@@ -182,7 +183,7 @@ class _EtapNoteScreenState extends State<EtapNoteScreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Статус note: ${noteforcreatstage.status}',
+                    'Статус note: ${noteforcreatstage.statustodo}',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
@@ -196,17 +197,17 @@ class _EtapNoteScreenState extends State<EtapNoteScreen> {
                       return ListTile(
                         leading: IconButton(
                           icon: Icon(
-                            notestage.done == 1
+                            notestage.donetodo == 1
                                 ? Icons.check_circle_outline
                                 : Icons.radio_button_unchecked,
                             color: Colors.black,
                             size: 30,
                           ),
                           onPressed: () async {
-                            if (notestage.done == 1) {
-                              notestage.done = 2;
+                            if (notestage.donetodo == 1) {
+                              notestage.donetodo = 2;
                             } else {
-                              notestage.done = 1;
+                              notestage.donetodo = 1;
                             }
                             var success =
                                 await updateStageNote(user, notestage);
@@ -215,19 +216,19 @@ class _EtapNoteScreenState extends State<EtapNoteScreen> {
                             }
                           },
                         ),
-                        title: Text(notestage.titlestage),
+                        title: Text(notestage.titlestagetodo),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("${notestage.id}"),
-                            Text(notestage.authorstage.nickname),
-                            Text("${notestage.idnote}"),
+                            Text("ID:  ${notestage.id}"),
+                            Text("Автор:  ${notestage.authorstagetodo}"),
+                            Text("номер цели:  ${notestage.idnotetodo}"),
                             Text(
-                              notestage.notestage.length > 20
-                                  ? notestage.notestage.substring(0, 20) + "..."
-                                  : notestage.notestage,
+                              notestage.notestagetodo.length > 20
+                                  ? notestage.notestagetodo.substring(0, 20) + "..."
+                                  : notestage.notestagetodo,
                             ),
-                            Text("${notestage.done}"),
+                            Text("Выполнение:  ${notestage.donetodo}"),
                           ],
                         ),
                         trailing: Row(

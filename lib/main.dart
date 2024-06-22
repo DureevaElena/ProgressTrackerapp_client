@@ -8,7 +8,7 @@ import 'package:simpleengineering/model/user_cubit.dart';
 import 'package:simpleengineering/model/user_models.dart';
 import 'package:simpleengineering/pages/home/home.dart';
 import 'package:simpleengineering/pages/login_page.dart';
-import 'package:provider/provider.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        
         home: FutureBuilder<Box>(
             future: Hive.openBox(tokenBox),
             builder: (context, snapshot) {

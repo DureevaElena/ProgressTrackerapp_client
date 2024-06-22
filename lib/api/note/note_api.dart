@@ -8,13 +8,15 @@ import 'package:http/http.dart' as http;
 const noteEndpoint = "$baseUrl/note/";
 
 
-Future<Note?> createCopyNewNote(User user, String title, String note, int cat) async {
+Future<Note?> createCopyNewNote(User user, String title, String note, int cat,String dataend, int status) async {
   var uri = Uri.parse(noteEndpoint + "createNote/");
   Map data = {
-    "author": "${user.id}",
-    "title": title,
-    "note": note,
-    "cat": "$cat"
+    "authortodo": "${user.id}",
+    "titletodo": title,
+    "notetodo": note,
+    "cattodo": "$cat",   
+    "dataendtodo": dataend,
+  "statustodo": "$status"
   };
   var res = await http.post(uri, body: data, headers: {
     'Authorization': 'Token ${user.token}',
@@ -29,14 +31,13 @@ Future<Note?> createCopyNewNote(User user, String title, String note, int cat) a
 }
 
 
-
-createStageNote(User user, String titlestage, String notestage, int idnote, int done) async {
+Future<StageNote?>createCopyStageNote(User user, String titlestage, String notestage, int idnote, int done) async {
   var uri = Uri.parse(noteEndpoint + "createStageNote/");
   Map data = {"authorstage": "${user.id}", 
-  "titlestage": titlestage, 
-  "notestage": notestage,
-  "idnote" : "$idnote",
-  "done" : "$done",
+  "titlestagetodo": titlestage, 
+  "notestagetodo": notestage,
+  "idnotetodo" : "$idnote",
+  "donetodo" : "$done",
   
   };
   var res = await http.post(uri, body: data, headers: {
@@ -47,44 +48,18 @@ createStageNote(User user, String titlestage, String notestage, int idnote, int 
   print(json);
 
   if (res.statusCode == 200 || res.statusCode == 201) {
-    return true;
+    var json = jsonDecode(res.body);
+    return StageNote.fromJson(json);
   } else {
-    return false;
+    throw Exception('Failed to create stage note');
   }
 }
 
 
-Future<bool> updateStageNote(User user, StageNote stageNote) async {
-  var uri = Uri.parse(noteEndpoint + "deleteUpdateStageNote/${stageNote.id}/");
 
-  var res = await http.put(uri, body: stageNote.toJson(), headers: {
-    'Authorization': ' Token ${user.token}',
-  });
-  print(res.body);
-  print(json);
-  if (res.statusCode == 200) {
-    //var json = jsonDecode(res.body);
 
-    return true;
-  }
-  return false;
-}
 
-Future<bool> deleteStageNote(User user, int noteID) async {
-  var uri = Uri.parse(noteEndpoint + "deleteUpdateStageNote/${noteID}/");
 
-  var res = await http.delete(uri, headers: {
-    'Authorization': ' Token ${user.token}',
-  });
-  //print(res.body);
-  //print(json);
-  if (res.statusCode == 200 || res.statusCode == 204) {
-    // var json = jsonDecode(res.body);
-
-    return true;
-  }
-  return false;
-}
 
 
 
@@ -93,12 +68,12 @@ Future<bool> deleteStageNote(User user, int noteID) async {
 
 createNote(User user, String title, String note, int cat, String dataend, int status) async {
   var uri = Uri.parse(noteEndpoint + "createNote/");
-  Map data = {"author": "${user.id}", 
-  "title": title, 
-  "note": note,
-  "cat" : "$cat",
-  "dataend": dataend,
-  "status": "$status"
+  Map data = {"authortodo": "${user.id}", 
+  "titletodo": title, 
+  "notetodo": note,
+  "cattodo" : "$cat",
+  "dataendtodo": dataend,
+  "statustodo": "$status"
   
   };
   var res = await http.post(uri, body: data, headers: {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:simpleengineering/api/note/note_api.dart';
+import 'package:simpleengineering/api/note/stagenode_api.dart';
 import 'package:simpleengineering/model/note_model.dart';
 import 'package:simpleengineering/model/user_cubit.dart';
 import 'package:simpleengineering/model/user_models.dart';
@@ -13,7 +14,6 @@ class CreateStageNoteScreen extends StatefulWidget {
   final int noteId;
   final Note note;
   
-
   const CreateStageNoteScreen({super.key, required this.noteId, required this.note});
 
   @override

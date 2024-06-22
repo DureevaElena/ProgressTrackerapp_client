@@ -39,6 +39,8 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
   }
   } 
 
+  
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +66,7 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
         actions: [
           IconButton(
             onPressed: () async {
-              String result = await showDialog(
+              String? result = await showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
                   content: Text("Вы действительно хотите удалить заметку?"),
@@ -144,6 +146,7 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
                       ),
                     ),
                   ),
+                  
                 ],
               ),
               Container(
@@ -175,12 +178,12 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${widget.note.title}",
+                  "Название: ${widget.note.titletodo}",
                   style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 15),
                 Text(
-                  "${widget.note.note}",
+                  "Описание: ${widget.note.notetodo}",
                   style: TextStyle(fontSize: 20),
                 ),
                 SizedBox(height: 15),
@@ -189,14 +192,14 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
                     Icon(Icons.calendar_month_outlined, size: 30),
                     SizedBox(width: 10),
                     Text(
-                      "${widget.note.dataend}",
+                      "Дата: ${widget.note.dataendtodo}",
                       style: TextStyle(fontSize: 20),
                     ),
                   ],
                 ),
                 SizedBox(height: 15),
                 Text(
-                  getStatusText(widget.note.status),
+                  getStatusText(widget.note.statustodo),
                   style: TextStyle(fontSize: 20),
                 )
               ],

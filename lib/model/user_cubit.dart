@@ -4,4 +4,9 @@ import 'package:simpleengineering/model/user_models.dart';
 
 class UserCubit extends Cubit<User> {
   UserCubit(super.initialState);
+
+
+  void updateUser(User updatedUser) {
+    emit(updatedUser);
+  }
 }

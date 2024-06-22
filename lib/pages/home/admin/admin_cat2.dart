@@ -6,17 +6,19 @@ import 'package:simpleengineering/model/note_model.dart';
 import 'package:simpleengineering/model/user_cubit.dart';
 import 'package:simpleengineering/model/user_models.dart';
 import 'package:simpleengineering/pages/home/account/personal.dart';
+import 'package:simpleengineering/pages/home/admin/admin_users.dart';
+import 'package:simpleengineering/pages/home/admin/adminhome.dart';
 import 'package:simpleengineering/pages/home/note/viewcat2_note.dart';
 import 'package:simpleengineering/pages/home/home.dart';
 
-class Cat extends StatefulWidget {
-  const Cat({super.key});
+class AdminCat extends StatefulWidget {
+  const AdminCat({super.key});
 
   @override
-  State<Cat> createState() => _CatState();
+  State<AdminCat> createState() => _AdminCatState();
 }
 
-class _CatState extends State<Cat> {
+class _AdminCatState extends State<AdminCat> {
   late User user;
 
   @override
@@ -49,7 +51,7 @@ class _CatState extends State<Cat> {
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) {
-                  return PersonalPage(user: user);
+                  return AdminPage();
                 },
               ));
             },
@@ -77,7 +79,7 @@ class _CatState extends State<Cat> {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => HomePage(),
+                        builder: (context) => UsersPage(user: user,),
                       ),
                     );
                   },
@@ -93,7 +95,7 @@ class _CatState extends State<Cat> {
                     ),
                   ),
                   child: Text(
-                    "Индивидуальные",
+                    "Пользователи",
                     style: TextStyle(
                       fontFamily: 'Montserrat',
                       color: Colors.black,
@@ -143,16 +145,6 @@ class _CatState extends State<Cat> {
                   crossAxisCount: 2,
                   children: notes.map((note) {
                     return GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => CatViewNoteScreen(
-                              note: note,
-                              user: user,
-                            ),
-                          ),
-                        );
-                      },
                       child: Container(
                         margin: EdgeInsets.all(8),
                         decoration: BoxDecoration(
@@ -169,63 +161,52 @@ class _CatState extends State<Cat> {
                                   : note.notetodo,
                             ),
                             Text("$cat"),
+
+
                             IconButton(
-                              onPressed: () async {
-                                
-                                try {
-                                  Note? copiedNote = await createCopyNewNote(
-                                    user,
-                                    note.titletodo,
-                                    note.notetodo,
-                                    1,
-                                    note.dataendtodo,
-                                    note.statustodo,
-                                  );
+            onPressed: () async {
+              String? result = await showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  content: Text("Вы действительно хотите удалить заметку?"),
+                  actions: [
+                    OutlinedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop("confirm");
+                      },
+                      child: Text("Подтвердить"),
+                    ),
+                    OutlinedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop("cancel");
+                      },
+                      child: Text("Отмена"),
+                    ),
+                  ],
+                ),
+              );
 
-                                  if (copiedNote != null) {
-                                    setState(() {
-                                      notes.add(copiedNote);
-                                    });
-
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                        content: Text(
-                                            "Категория установлена как 1 и заметка сохранена"),
-                                      ),
-                                    );
-                                  } else {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                        content: Text(
-                                            "note успешно добавлена в Индивидуальные"),
-                                      ),
-                                    );
-                                  }
-                                } catch (e) {
-                                  print(
-                                      'note успешно добавлена в Индивидуальные $e');
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => AlertDialog(
-                                      content: Text(
-                                          "note успешно добавлена в Индивидуальные"),
-                                    ),
-                                  );
-                                }
-                              },
-                              icon: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.favorite_border,
-                                    color: Colors.black,
-                                    size: 30,
-                                  ),
-                                ],
-                              ),
-                            ),
+              if (result == "confirm") {
+                var success = await deleteNote(user, note.id); 
+                if (success) {
+                  Navigator.of(context).pop(true); 
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      content: Text("Что-то пошло не так при удалении заметки"),
+                    ),
+                  );
+                }
+              }
+            },
+            icon: const Icon(
+              Icons.delete_rounded,
+              color: Colors.black,
+              size: 35,
+            ),
+          ),
+                            
                           ],
                         ),
                       ),
