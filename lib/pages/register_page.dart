@@ -5,10 +5,6 @@ import 'package:simpleengineering/api/auth/auth_api.dart';
 import 'package:simpleengineering/first_screen.dart';
 import 'package:simpleengineering/model/user_cubit.dart';
 import 'package:simpleengineering/model/user_models.dart';
-import 'package:simpleengineering/pages/home/home.dart';
-import 'package:simpleengineering/there.dart';
-import 'package:simpleengineering/widgets/fields.dart';
-import 'package:simpleengineering/widgets/texxt_button.dart';
 
 import 'login_page.dart';
 
@@ -143,7 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),),
               TextFormField(
                 controller: emailController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     borderSide: BorderSide(color: Colors.black,width: 2.0),
@@ -169,7 +165,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),),
               TextFormField(
                 controller: passwordController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     borderSide: BorderSide(color: Colors.black,width: 2.0),
@@ -193,7 +189,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),),
               TextFormField(
                 controller: comfirmPassword,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     borderSide: BorderSide(color: Colors.black,width: 2.0),

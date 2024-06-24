@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:simpleengineering/api/note/note_api.dart';
+import 'package:simpleengineering/api/note/stagenode_api.dart';
 import 'package:simpleengineering/model/note_model.dart';
 import 'package:simpleengineering/model/user_cubit.dart';
 import 'package:simpleengineering/model/user_models.dart';
@@ -31,8 +32,8 @@ class _UpdateStageNoteScreenState extends State<UpdateStageNoteScreen> {
   void initState() {
     user = context.read<UserCubit>().state;
     stageNote = widget.stageNote;
-    titleController.text = stageNote.titlestage;
-    noteController.text = stageNote.notestage;
+    titleController.text = stageNote.titlestagetodo;
+    noteController.text = stageNote.notestagetodo;
     super.initState();
   }
 
@@ -44,10 +45,9 @@ class _UpdateStageNoteScreenState extends State<UpdateStageNoteScreen> {
   }
 
   Future<void> updateStageNoteAndSave() async {
-    stageNote.titlestage = titleController.text;
-    stageNote.notestage = noteController.text;
-
-
+    stageNote.titlestagetodo = titleController.text;
+    stageNote.notestagetodo = noteController.text;
+    
     var success = await updateStageNote(user, stageNote);
     if (success) {
       showDialog(

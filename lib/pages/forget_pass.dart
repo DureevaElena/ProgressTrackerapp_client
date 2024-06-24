@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:simpleengineering/api/note/note_api.dart';
+import 'package:simpleengineering/api/note/user_api.dart';
 import 'dart:convert';
 
-import 'change_password.dart'; // Импортируем страницу с изменением пароля
+import 'package:simpleengineering/model/note_model.dart';
 
-const String baseUrl = "http://10.0.2.2:8000"; // Обратите внимание на базовый URL
-
+const String baseUrl = "http://10.0.2.2:8000"; 
 class ForgotPasswordPage extends StatefulWidget {
   @override
   _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
@@ -13,44 +14,17 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final TextEditingController _emailController = TextEditingController();
+  Password? _password;
 
   Future<void> _requestPasswordReset() async {
-    try {
-      final response = await http.post(
-        Uri.parse('$baseUrl/request-password-reset/'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(<String, String>{
-          'email': _emailController.text,
-        }),
-      );
-
-      if (response.statusCode == 200) {
-        final responseData = jsonDecode(response.body);
-        String encodedPk = responseData['encoded_pk'];
-        String token = responseData['token'];
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ChangePasswordPage(encodedPk: encodedPk, token: token),
-          ),
-        );
-      } else {
-        final responseData = jsonDecode(response.body);
-        if (responseData.containsKey('message')) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(responseData['message'])),
-          );
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Unexpected error occurred')),
-          );
-        }
-      }
-    } catch (e) {
+    Password? password = await requestPasswordReset(_emailController.text);
+    if (password != null) {
+      setState(() {
+        _password = password;
+      });
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
+        SnackBar(content: Text('Failed to request password reset')),
       );
     }
   }
@@ -74,6 +48,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               onPressed: _requestPasswordReset,
               child: Text('Reset Password'),
             ),
+            if (_password != null) ...[
+              SizedBox(height: 20),
+              Text('Password Reset Details:', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(_password.toString()),
+            ],
           ],
         ),
       ),

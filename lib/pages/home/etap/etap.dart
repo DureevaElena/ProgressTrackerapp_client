@@ -15,6 +15,7 @@ class EtapNoteScreen extends StatefulWidget {
   final int noteId;
   final Note note;
 
+
   const EtapNoteScreen({super.key, required this.noteId, required this.note});
 
   @override
@@ -23,7 +24,7 @@ class EtapNoteScreen extends StatefulWidget {
 
 class _EtapNoteScreenState extends State<EtapNoteScreen> {
   late User user;
-  List<StageNote> notestages = []; // Список этапов
+  List<StageNote> notestages = [];
 
   int totalNotes = 0;
   int totalDone1 = 0;
@@ -33,56 +34,50 @@ class _EtapNoteScreenState extends State<EtapNoteScreen> {
   void initState() {
     super.initState();
     user = context.read<UserCubit>().state;
-    // Вызываем загрузку данных и вычисление общего количества этапов
     loadDataAndCalculateTotals();
   }
 
   Future<void> loadDataAndCalculateTotals() async {
-    notestages = await getStageNotes(user, widget.noteId);
+    notestages = await getStageNotes(user, widget.note.id);
     calculateTotals();
-    setState(() {}); // Перерисовываем виджет после загрузки данных
+    setState(() {});
   }
 
  
   void calculateTotals() {
     totalNotes = notestages.length;
-    totalDone1 = notestages.where((stagenote) => stagenote.done == 1).length;
-    totalDone2 = notestages.where((stagenote) => stagenote.done == 2).length;
+    totalDone1 = notestages.where((stagenote) => stagenote.donetodo == 1).length;
+    totalDone2 = notestages.where((stagenote) => stagenote.donetodo == 2).length;
 
-    // Логика для обновления статуса note в зависимости от этапов и даты завершения
     if (totalNotes == totalDone1) {
-      widget.note.status = 3;
-      updateNoteStatus(); // Вызываем метод для обновления статуса заметки
+      widget.note.statustodo = 3;
+      updateNoteStatus();
     } else if (totalNotes >= 0) {
       DateTime currentDate = DateTime.now();
-      DateTime endDate = widget.note.dataend is DateTime
-        ? widget.note.dataend as DateTime
+      DateTime endDate = widget.note.dataendtodo is DateTime
+        ? widget.note.dataendtodo as DateTime
         : currentDate;
 
       if (endDate.isAfter(currentDate)) {
-        widget.note.status = 1; // Устанавливаем статус "Не завершено, но есть время"
+        widget.note.statustodo = 1;
       } else {
-        widget.note.status = 2; // Устанавливаем статус "Не завершено, время истекло"
+        widget.note.statustodo = 2; 
       }
-      updateNoteStatus(); // Вызываем метод для обновления статуса заметки
+      updateNoteStatus(); 
     }
   }
-  // Метод для обновления статуса заметки
   Future<void> updateNoteStatus() async {
     var success = await updateNote(
       user,
       widget.note
     );
     if (success) {
-      setState(() {}); // Перерисовываем виджет после успешного обновления
+      setState(() {}); 
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    int id = widget.noteId;
-    Note noteforcreatstage = widget.note;
-
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
@@ -100,9 +95,6 @@ class _EtapNoteScreenState extends State<EtapNoteScreen> {
             size: 30,
           ),
         ),
-
-        title: Text("Статус: ${noteforcreatstage.status}"),
-        
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(40.0),
           child: Column(
@@ -156,38 +148,6 @@ class _EtapNoteScreenState extends State<EtapNoteScreen> {
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Общее количество этапов: $totalNotes',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Этапы со статусом "done = 1": $totalDone1',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-                
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Этапы со статусом "done = 2": $totalDone2',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Статус note: ${noteforcreatstage.status}',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-
-
                 Expanded(
                   child: ListView.builder(
                     itemCount: notestages.length,
@@ -196,17 +156,17 @@ class _EtapNoteScreenState extends State<EtapNoteScreen> {
                       return ListTile(
                         leading: IconButton(
                           icon: Icon(
-                            notestage.done == 1
+                            notestage.donetodo == 1
                                 ? Icons.check_circle_outline
                                 : Icons.radio_button_unchecked,
                             color: Colors.black,
                             size: 30,
                           ),
                           onPressed: () async {
-                            if (notestage.done == 1) {
-                              notestage.done = 2;
+                            if (notestage.donetodo == 1) {
+                              notestage.donetodo = 2;
                             } else {
-                              notestage.done = 1;
+                              notestage.donetodo = 1;
                             }
                             var success =
                                 await updateStageNote(user, notestage);
@@ -215,21 +175,7 @@ class _EtapNoteScreenState extends State<EtapNoteScreen> {
                             }
                           },
                         ),
-                        title: Text(notestage.titlestage),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("${notestage.id}"),
-                            Text(notestage.authorstage.nickname),
-                            Text("${notestage.idnote}"),
-                            Text(
-                              notestage.notestage.length > 20
-                                  ? notestage.notestage.substring(0, 20) + "..."
-                                  : notestage.notestage,
-                            ),
-                            Text("${notestage.done}"),
-                          ],
-                        ),
+                        title: Text(notestage.titlestagetodo, style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -240,8 +186,8 @@ class _EtapNoteScreenState extends State<EtapNoteScreen> {
                                   MaterialPageRoute(
                                     builder: (context) =>
                                         UpdateStageNoteScreen(
-                                      noteId: id,
-                                      note: noteforcreatstage,
+                                      noteId: widget.note.id,
+                                      note: widget.note,
                                       stageNote: notestage,
                                     ),
                                   ),
@@ -295,7 +241,7 @@ class _EtapNoteScreenState extends State<EtapNoteScreen> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) =>
-                  CreateStageNoteScreen(noteId: id, note: noteforcreatstage),
+                  CreateStageNoteScreen(noteId: widget.note.id, note: widget.note),
             ),
           );
         },

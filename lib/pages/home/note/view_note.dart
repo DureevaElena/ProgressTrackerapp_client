@@ -19,31 +19,16 @@ class ViewNoteScreen extends StatefulWidget {
 class _ViewNoteScreenState extends State<ViewNoteScreen> {
   late int noteId; 
   
-
   @override
   void initState() {
     super.initState();
     noteId = widget.note.id;
   }
 
-  String getStatusText(int status) {
-  switch (status) {
-    case 1:
-      return "Текущие";
-    case 2:
-      return "Просроченные";
-    case 3:
-      return "Завершенные";
-    default:
-      return "Неизвестный статус";
-  }
-  } 
-
-
   @override
   Widget build(BuildContext context) {
-    Note noteetap = widget.note;
-    
+    String profilePictureUrl = widget.note.note_picturetodo ?? '';
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
@@ -64,7 +49,7 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
         actions: [
           IconButton(
             onPressed: () async {
-              String result = await showDialog(
+              String? result = await showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
                   content: Text("Вы действительно хотите удалить заметку?"),
@@ -86,12 +71,12 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
               );
 
               if (result == "confirm") {
-                var success = await deleteNote(widget.user, widget.note.id); // Передаем токен пользователя для удаления заметки
+                var success = await deleteNote(widget.user, widget.note.id); 
                 if (success) {
-                  // Удаление успешно
-                  Navigator.of(context).pop(true); // Возвращаем успешный результат удаления
+
+                  Navigator.of(context).pop(true); 
                 } else {
-                  // В случае ошибки
+
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
@@ -111,14 +96,13 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(40.0),
           child: Column(
-            // Оборачиваем Row в Column
+
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextButton(
                     onPressed: () {
-                      // Действия для кнопки "Описание"
                     },
                     child: const Text(
                       'Описание',
@@ -132,7 +116,7 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => EtapNoteScreen(noteId: noteId, note: noteetap,),
+                          builder: (context) => EtapNoteScreen(noteId: widget.note.id, note: widget.note,),
                         ),
                       );
                     },
@@ -144,6 +128,7 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
                       ),
                     ),
                   ),
+                  
                 ],
               ),
               Container(
@@ -165,9 +150,22 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
                 height: 150,
                 width: 150,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 229, 229, 229),
+                  color: Color.fromARGB(255, 229, 229, 229),
                   borderRadius: BorderRadius.circular(30),
+                  image: profilePictureUrl.isNotEmpty
+                      ? DecorationImage(
+                          image: NetworkImage(profilePictureUrl),
+                          fit: BoxFit.cover,
+                        )
+                      : null,
                 ),
+                child: profilePictureUrl.isEmpty
+                    ? const Icon(
+                        Icons.camera_alt_outlined,
+                        color: Colors.grey,
+                        size: 50,
+                      )
+                    : null,
               ),
             ),
             SizedBox(height: 25),
@@ -175,12 +173,12 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${widget.note.title}",
+                  "${widget.note.titletodo}",
                   style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 15),
                 Text(
-                  "${widget.note.note}",
+                  "${widget.note.notetodo}",
                   style: TextStyle(fontSize: 20),
                 ),
                 SizedBox(height: 15),
@@ -189,16 +187,16 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
                     Icon(Icons.calendar_month_outlined, size: 30),
                     SizedBox(width: 10),
                     Text(
-                      "${widget.note.dataend}",
+                      "${widget.note.dataendtodo}",
                       style: TextStyle(fontSize: 20),
                     ),
                   ],
                 ),
-                SizedBox(height: 15),
-                Text(
-                  getStatusText(widget.note.status),
-                  style: TextStyle(fontSize: 20),
-                )
+                // SizedBox(height: 15),
+                // Text(
+                //   getStatusText(widget.note.statustodo),
+                //   style: TextStyle(fontSize: 20),
+                // )
               ],
             ),
             SizedBox(height: 50),
@@ -209,7 +207,7 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => UpdateNoteScreen(note: widget.note),
+                        builder: (context) => UpdateNoteScreen(note: widget.note, noteID: widget.note.id,),
                       ),
                     );
                   },

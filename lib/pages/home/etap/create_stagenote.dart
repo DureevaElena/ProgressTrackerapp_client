@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:simpleengineering/api/note/note_api.dart';
+import 'package:simpleengineering/api/note/stagenode_api.dart';
 import 'package:simpleengineering/model/note_model.dart';
 import 'package:simpleengineering/model/user_cubit.dart';
 import 'package:simpleengineering/model/user_models.dart';
@@ -13,9 +14,7 @@ class CreateStageNoteScreen extends StatefulWidget {
   final int noteId;
   final Note note;
   
-
   const CreateStageNoteScreen({super.key, required this.noteId, required this.note});
-
   @override
   State<CreateStageNoteScreen> createState() => _CreateStageNoteScreenState();
 }
@@ -49,9 +48,9 @@ class _CreateStageNoteScreenState extends State<CreateStageNoteScreen> {
         leading: IconButton(
           onPressed: (){
             Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => EtapNoteScreen(noteId: idnote, note: notenote,)),
-                (route) => false,
-                );
+              MaterialPageRoute(builder: (context) => EtapNoteScreen(noteId: idnote, note: notenote,)),
+              (route) => false,
+            );
           }, 
           icon: const Icon(
             Icons.arrow_back,
@@ -75,19 +74,13 @@ class _CreateStageNoteScreenState extends State<CreateStageNoteScreen> {
                   noteController.text,
                   idnote,
                   done
-                  
-                  
-                  
                 );
                 
                 if (a) {
-                  
-                  Navigator.of(context).pushAndRemoveUntil(
+                Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(builder: (context) => EtapNoteScreen(noteId: idnote, note: notenote,)),
                 (route) => false,
                 );
-                 
-                 
                 }
             },
             icon: Icon(
@@ -104,19 +97,12 @@ class _CreateStageNoteScreenState extends State<CreateStageNoteScreen> {
           ),
         ),
       ),
-
       body: SingleChildScrollView(
         child: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
           children: [
-            
-            
-
             SizedBox(height: 50,),
-
-
-            
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: SingleChildScrollView(
@@ -147,9 +133,7 @@ class _CreateStageNoteScreenState extends State<CreateStageNoteScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 15,),
-
-                    
+                    SizedBox(height: 15,),                  
                     const Padding(padding: EdgeInsets.only(left: 10),
                     child: Align(
                       alignment: Alignment.centerLeft,
@@ -174,14 +158,10 @@ class _CreateStageNoteScreenState extends State<CreateStageNoteScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 15,),
-
-
-                                       
+                    SizedBox(height: 15,),               
                   ],
                 ),
-              ),
-              
+              ), 
             ),
           ],
         ),

@@ -1,92 +1,93 @@
 class Note {
   int id;
-  Author author;
-  String title;
-  String note;
-  int cat;
-  String dataend;
-  int status;
+  Author authortodo;
+  String titletodo;
+  String notetodo;
+  String note_picturetodo;
+  int cattodo;
+  String dataendtodo;
+  int statustodo;
 
   Note(
     this.id,
-    this.author,
-    this.title,
-    this.note,
-    this.cat,
-    this.dataend,
-    this.status,
+    this.authortodo,
+    this.titletodo,
+    this.notetodo,
+    this.cattodo,
+    this.dataendtodo,
+    this.statustodo,
+    this.note_picturetodo
   );
 
   factory Note.fromJson(Map json) {
     return Note(
       json["id"],
-      Author.fromJson(json["author"]),
-      json["title"],
-      json["note"] ?? "",
-      json["cat"],
-      json["dataend"] ?? "",
-      json["status"], 
+      Author.fromJson(json["authortodo"]),
+      json["titletodo"],
+      json["notetodo"] ?? "",
+      json["cattodo"],
+      json["dataendtodo"] ?? "",
+      json["statustodo"], 
+      json["note_picturetodo"] ?? "",
     );
   }
 
   Map<String, String> toJson() {
     return {
       "id": "$id",
-      "author": "${author.id}",
-      "title": title,
-      "note": note,
-      "cat": "$cat",
-      "dataend": dataend,
-      "status": "$status"
+      "authortodo": "${authortodo.id}",
+      "titletodo": titletodo,
+      "notetodo": notetodo,
+      "cattodo": "$cattodo",
+      "dataendtodo": dataendtodo,
+      "statustodo": "$statustodo",
+      "note_picturetodo":note_picturetodo
       
       
     };
   } 
-
-
 }
 
 
 class StageNote {
   int id;
-  Author authorstage;
-  String titlestage;
-  String notestage;
-  int idnote;
-  int done;
+  int authorstagetodo;
+  String titlestagetodo;
+  String notestagetodo;
+  int idnotetodo;
+  int donetodo;
  
   StageNote(
     this.id,
-    this.authorstage,
-    this.titlestage,
-    this.notestage,
-    this.idnote,
-    this.done,
+    this.authorstagetodo,
+    this.titlestagetodo,
+    this.notestagetodo,
+    this.idnotetodo,
+    this.donetodo,
 
   );
   factory StageNote.fromJson(Map json) {
     return StageNote(
       json["id"],
-      Author.fromJson(json["authorstage"]),
-      json["titlestage"],
-      json["notestage"],
-      json["idnote"],
-      json["done"],
+      json["authorstagetodo"],
+      json["titlestagetodo"],
+      json["notestagetodo"],
+      json["idnotetodo"],
+      json["donetodo"],
     );
   }
 
   Map<String, String> toJson() {
     return {
       "id": "$id",
-      "authorstage": "${authorstage.id}",
-      "titlestage": titlestage,
-      "notestage": notestage,
-      "idnote":"$idnote",
-      "done":"$done" 
+      "authorstagetodo": "$authorstagetodo",
+      "titlestagetodo": titlestagetodo,
+      "notestagetodo": notestagetodo,
+      "idnotetodo":"$idnotetodo",
+      "donetodo":"$donetodo" 
     };
   } 
 }
-
 
 class Author {
   int id;
@@ -139,4 +140,9 @@ class Password {
       "token": token,
     };
   } 
+
+  @override
+  String toString() {
+    return 'Encoded PK: $encoded_pk\nToken: $token';
+  }
 }
