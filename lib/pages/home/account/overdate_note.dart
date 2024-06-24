@@ -1,7 +1,3 @@
-//ПРОСРОЧЕННЫЕ
-//ЗАВЕРШЕННЫЕ
-//ТЕКУЩИЕ
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simpleengineering/api/auth/auth_api.dart';
@@ -16,7 +12,6 @@ import 'package:simpleengineering/pages/home/note/create_note_screen.dart';
 import 'package:simpleengineering/pages/home/note/update_note_csreen.dart';
 import 'package:simpleengineering/pages/home/note/view_note.dart';
 import 'package:simpleengineering/pages/login_page.dart';
-import 'package:simpleengineering/there.dart';
 
 
 class OverdateNotePage extends StatefulWidget {
@@ -34,12 +29,12 @@ class _OverdateNoteState extends State<OverdateNotePage> {
   void initState() {
     user = context.read<UserCubit>().state;
     super.initState();
-    loadNotes(); // Загружаем заметки при инициализации
+    loadNotes();
   }
 
   Future<void> loadNotes() async {
     try {
-      List<Note> loadedNotes = await getStatusNotes(user, 2);
+      List<Note> loadedNotes = await getStatusNotesOD(user, );
       setState(() {
         notes = loadedNotes;
       });
@@ -92,7 +87,10 @@ class _OverdateNoteState extends State<OverdateNotePage> {
       ),
       body: notes.isEmpty 
           ? Center(
-              child: CircularProgressIndicator(),
+              child: Text(
+        'Нет созданных заметок',
+        style: TextStyle(fontSize: 20),
+      ),
             )
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,49 +117,35 @@ class _OverdateNoteState extends State<OverdateNotePage> {
                           });
                         },
                         child: Container(
-                          margin: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 136, 108, 108),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          height: 150,
-                          width: MediaQuery.of(context).size.width,
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: AspectRatio(
-                                  aspectRatio: 1,
-                                  child: Container(
-                                    color: Colors.grey,
-                                    child: Center(child: Text('Фото')),
-                                  ),
+                        margin: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 156, 218, 145),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        height: 120,
+                        width: MediaQuery.of(context).size.width,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      note.titletodo,
+                                      style: TextStyle(fontSize: 30),
+                                    ),
+                                    Text(
+                                      note.authortodo.nickname,
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(note.titletodo),
-                                      Text(note.authortodo.nickname),
-                                      Text("${note.id}"),
-                                      if (note.notetodo != null) // Проверяем, не является ли note.note null
-                                        Text(
-                                          note.notetodo.length > 20
-                                              ? note.notetodo.substring(0, 20) + "..."
-                                              : note.notetodo,
-                                        ),
-                                      Text("${note.cattodo}"),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              
-                              
-                            ],
+                            ),
+                          ],
                           ),
                         ),
                       );

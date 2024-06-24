@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:simpleengineering/api/note/user_api.dart';
 import 'dart:convert';
-
 import 'package:simpleengineering/model/user_models.dart';
 import 'package:simpleengineering/constants.dart';
 import 'package:simpleengineering/pages/home/admin/admin_cat2.dart';
@@ -32,7 +31,7 @@ class _UsersPageState extends State<UsersPage> {
 
   Future<void> loadUsers() async {
     try {
-      List<User> loadedUsers = await getUsers(); // Function to fetch users
+      List<User> loadedUsers = await getUsers(); 
       setState(() {
         users = loadedUsers.where((user) => user.is_superuser == false).toList();
       });
@@ -61,19 +60,10 @@ class _UsersPageState extends State<UsersPage> {
     }
   }
 
-
-
-
-
-
-
-
-
-
   Future<void> showDialogMessage(String message) async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button to dismiss the dialog
+      barrierDismissible: false, 
       builder: (BuildContext context) {
         return AlertDialog(
           content: Text(message),
@@ -89,21 +79,6 @@ class _UsersPageState extends State<UsersPage> {
       },
     );
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {

@@ -140,4 +140,9 @@ class Password {
       "token": token,
     };
   } 
+
+  @override
+  String toString() {
+    return 'Encoded PK: $encoded_pk\nToken: $token';
+  }
 }

@@ -10,7 +10,7 @@ import 'package:simpleengineering/pages/home/note/viewcat2_note.dart';
 import 'package:simpleengineering/pages/home/home.dart';
 
 class Cat extends StatefulWidget {
-  const Cat({super.key});
+  const Cat({Key? key}) : super(key: key);
 
   @override
   State<Cat> createState() => _CatState();
@@ -27,7 +27,6 @@ class _CatState extends State<Cat> {
 
   @override
   Widget build(BuildContext context) {
-    int cat = 2;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
@@ -139,9 +138,10 @@ class _CatState extends State<Cat> {
                   return Center(child: Text('Заметки отсутствуют'));
                 }
                 List<Note> notes = snapshot.data!;
-                return GridView.count(
-                  crossAxisCount: 2,
-                  children: notes.map((note) {
+                return ListView.builder(
+                  itemCount: notes.length,
+                  itemBuilder: (context, index) {
+                    Note note = notes[index];
                     return GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(
@@ -156,22 +156,34 @@ class _CatState extends State<Cat> {
                       child: Container(
                         margin: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 188, 18, 18),
+                          color: Color.fromARGB(255, 66, 177, 218),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Column(
+                        height: 120,
+                        width: MediaQuery.of(context).size.width,
+                        child: Row(
                           children: [
-                            Text(note.titletodo),
-                            Text(note.authortodo.nickname),
-                            Text(
-                              note.notetodo.length > 20
-                                  ? note.notetodo.substring(0, 20) + "..."
-                                  : note.notetodo,
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      note.titletodo,
+                                      style: TextStyle(fontSize: 30),
+                                    ),
+                                    Text(
+                                      note.authortodo.nickname,
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            Text("$cat"),
                             IconButton(
                               onPressed: () async {
-                                
                                 try {
                                   Note? copiedNote = await createCopyNewNote(
                                     user,
@@ -189,7 +201,7 @@ class _CatState extends State<Cat> {
 
                                     showDialog(
                                       context: context,
-                                      builder: (context) => AlertDialog(
+                                      builder: (context) => const AlertDialog(
                                         content: Text(
                                             "Категория установлена как 1 и заметка сохранена"),
                                       ),
@@ -197,40 +209,34 @@ class _CatState extends State<Cat> {
                                   } else {
                                     showDialog(
                                       context: context,
-                                      builder: (context) => AlertDialog(
+                                      builder: (context) => const AlertDialog(
                                         content: Text(
                                             "note успешно добавлена в Индивидуальные"),
                                       ),
                                     );
                                   }
                                 } catch (e) {
-                                  print(
-                                      'note успешно добавлена в Индивидуальные $e');
+                                  print('Ошибка при копировании заметки: $e');
                                   showDialog(
                                     context: context,
-                                    builder: (context) => AlertDialog(
+                                    builder: (context) => const AlertDialog(
                                       content: Text(
                                           "note успешно добавлена в Индивидуальные"),
                                     ),
                                   );
                                 }
                               },
-                              icon: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.favorite_border,
-                                    color: Colors.black,
-                                    size: 30,
-                                  ),
-                                ],
+                              icon: const Icon(
+                                Icons.favorite_border,
+                                color: Colors.black,
+                                size: 30,
                               ),
                             ),
                           ],
                         ),
                       ),
                     );
-                  }).toList(),
+                  },
                 );
               },
             ),

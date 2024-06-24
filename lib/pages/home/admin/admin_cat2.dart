@@ -79,7 +79,7 @@ class _AdminCatState extends State<AdminCat> {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => UsersPage(user: user,),
+                        builder: (context) => UsersPage(user: user),
                       ),
                     );
                   },
@@ -141,77 +141,90 @@ class _AdminCatState extends State<AdminCat> {
                   return Center(child: Text('Заметки отсутствуют'));
                 }
                 List<Note> notes = snapshot.data!;
-                return GridView.count(
-                  crossAxisCount: 2,
-                  children: notes.map((note) {
+                return ListView.builder(
+                  itemCount: notes.length,
+                  itemBuilder: (context, index) {
+                    Note note = notes[index];
                     return GestureDetector(
                       child: Container(
                         margin: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 188, 18, 18),
+                          color: Color.fromARGB(255, 66, 177, 218),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Column(
+                        height: 120,
+                        width: MediaQuery.of(context).size.width,
+                        child: Row(
                           children: [
-                            Text(note.titletodo),
-                            Text(note.authortodo.nickname),
-                            Text(
-                              note.notetodo.length > 20
-                                  ? note.notetodo.substring(0, 20) + "..."
-                                  : note.notetodo,
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      note.titletodo,
+                                      style: TextStyle(fontSize: 30),
+                                    ),
+                                    Text(
+                                      note.authortodo.nickname,
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            Text("$cat"),
-
-
                             IconButton(
-            onPressed: () async {
-              String? result = await showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  content: Text("Вы действительно хотите удалить заметку?"),
-                  actions: [
-                    OutlinedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop("confirm");
-                      },
-                      child: Text("Подтвердить"),
-                    ),
-                    OutlinedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop("cancel");
-                      },
-                      child: Text("Отмена"),
-                    ),
-                  ],
-                ),
-              );
+                              onPressed: () async {
+                                String? result = await showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    content: Text("Вы действительно хотите удалить заметку?"),
+                                    actions: [
+                                      OutlinedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop("confirm");
+                                        },
+                                        child: Text("Подтвердить"),
+                                      ),
+                                      OutlinedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop("cancel");
+                                        },
+                                        child: Text("Отмена"),
+                                      ),
+                                    ],
+                                  ),
+                                );
 
-              if (result == "confirm") {
-                var success = await deleteNote(user, note.id); 
-                if (success) {
-                  Navigator.of(context).pop(true); 
-                } else {
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      content: Text("Что-то пошло не так при удалении заметки"),
-                    ),
-                  );
-                }
-              }
-            },
-            icon: const Icon(
-              Icons.delete_rounded,
-              color: Colors.black,
-              size: 35,
-            ),
-          ),
-                            
+                                if (result == "confirm") {
+                                  var success = await deleteNote(user, note.id);
+                                  if (success) {
+                                    setState(() {
+                                      notes.removeAt(index);
+                                    });
+                                  } else {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        content: Text("Что-то пошло не так при удалении заметки"),
+                                      ),
+                                    );
+                                  }
+                                }
+                              },
+                              icon: const Icon(
+                                Icons.delete_rounded,
+                                color: Colors.black,
+                                size: 35,
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     );
-                  }).toList(),
+                  },
                 );
               },
             ),

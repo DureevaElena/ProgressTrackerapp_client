@@ -12,7 +12,6 @@ import 'package:simpleengineering/pages/home/note/create_note_screen.dart';
 import 'package:simpleengineering/pages/home/note/update_note_csreen.dart';
 import 'package:simpleengineering/pages/home/note/view_note.dart';
 import 'package:simpleengineering/pages/login_page.dart';
-import 'package:simpleengineering/there.dart';
 class AdminPage extends StatefulWidget {
   const AdminPage({Key? key}) : super(key: key);
 
@@ -23,8 +22,6 @@ class AdminPage extends StatefulWidget {
 class _AdminPageState extends State<AdminPage> {
   late User user;
   List<Note> notes = [];
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -71,14 +68,13 @@ class _AdminPageState extends State<AdminPage> {
                     shape: BoxShape.circle,
                   ),
                 ),
-              
 
                 SizedBox(height: 50,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 10),
                       child: Text(
                         'Имя',
                         style: TextStyle(
@@ -87,7 +83,7 @@ class _AdminPageState extends State<AdminPage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 8), // Пространство между текстами
+                    SizedBox(height: 8),
 
                     Text(
                       "${user.nickname}",

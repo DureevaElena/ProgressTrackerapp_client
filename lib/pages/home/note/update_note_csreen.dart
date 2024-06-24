@@ -1,16 +1,22 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:simpleengineering/api/note/note_api.dart';
+import 'package:simpleengineering/constants.dart';
 import 'package:simpleengineering/model/note_model.dart';
 import 'package:simpleengineering/model/user_cubit.dart';
 import 'package:simpleengineering/model/user_models.dart';
 import 'package:simpleengineering/pages/home/home.dart';
+import 'package:http/http.dart' as http;
 
 class UpdateNoteScreen extends StatefulWidget {
   final Note note;
+  final int noteID;
 
-  const UpdateNoteScreen({Key? key, required this.note}) : super(key: key);
+  const UpdateNoteScreen({Key? key, required this.note, required this.noteID}) : super(key: key);
 
   @override
   State<UpdateNoteScreen> createState() => _UpdateNoteScreenState();
@@ -23,14 +29,18 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
   int selectedStatus = 1;
   late User user;
   late Note note;
+
   DateTime? selectedDate;
+ 
+  File? _image;
+  final picker = ImagePicker();
 
   Future<void> _selectDate(BuildContext context) async {
   final DateTime? picked = await showDatePicker(
     context: context,
     initialDate: selectedDate ?? DateTime.now(),
     firstDate: DateTime(1900),
-    lastDate: DateTime.now().add(Duration(days: 36500)), // Например, +10 лет от текущей даты
+    lastDate: DateTime.now().add(Duration(days: 36500)),
   );
   if (picked != null && picked != selectedDate) {
     setState(() {
@@ -83,6 +93,45 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
     }
   }
 
+  Future<void> _pickImage() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future<void> _uploadImage() async {
+    if (_image == null) return;
+
+    final uri = Uri.parse('$baseUrl/note/note/${widget.note.id}/update/');
+    var request = http.MultipartRequest('PUT', uri);
+    request.headers['Authorization'] = 'Token ${user.token}';
+    request.files.add(await http.MultipartFile.fromPath('note_picturetodo', _image!.path));
+
+    var response = await request.send();
+    if (response.statusCode == 200) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text("Фото успешно загружено"),
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text("Ошибка при загрузке фото"),
+        ),
+      );
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,62 +178,57 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
       
  
       body: SingleChildScrollView(
-        child: Padding(
+      child: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
           children: [
-            
-            Align( 
-                alignment: Alignment.center,
-                child: Container(
-                  height: 150,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255,229,229,229),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-              ),
-
-            SizedBox(height: 25,),
-           
             Align(
-              alignment: Alignment.bottomCenter,
-              child: TextButton(
-                onPressed: () {
-                    // Действие при нажатии кнопки "Добавить фото"
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 25, 25, 230),
-                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                  'Добавить фото',
+  alignment: Alignment.center,
+  child: GestureDetector(
+    onTap: _pickImage,
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        height: 150,
+        width: 150,
+        color: Colors.grey,
+        child: _image == null
+            ? const Center(
+                child: Text(
+                  'Нажми чтобы добавить фото',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontFamily: 'Montserrat',
+                    fontSize: 16,
                     color: Colors.white,
-                    fontSize: 20,
                   ),
-                  ),
-                  SizedBox(width: 8),
-                  Icon(
-                    Icons.camera_alt_outlined,
-                    color: Colors.white,
-                      size: 20,
-                  ),
-                  ],
                 ),
-              ),
-            ),
+              )
+            : Image.file(_image!, fit: BoxFit.cover),
+      ),
+    ),
+  ),
+),
+            SizedBox(height: 25),
+            ElevatedButton.icon(
+              onPressed: _uploadImage,
+              icon: Icon(Icons.upload, color: Colors.white,
+                      size: 30, 
+                    ),
+              label: const Text('Загрузить фото', style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),),
+                    style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 25, 25, 230),
+                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+
+
+            ),),
 
             SizedBox(height: 50,),
 
-
-            
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: SingleChildScrollView(
@@ -271,15 +315,10 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 15,),
-
-
-                    
-                                       
+                    SizedBox(height: 15,),                    
                   ],
                 ),
               ),
-              
             ),
           ],
         ),
@@ -289,19 +328,4 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
   }
 }
 
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       

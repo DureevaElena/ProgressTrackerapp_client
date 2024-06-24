@@ -57,8 +57,6 @@ Future<bool> updateStageNote(User user, StageNote stageNote) async {
   print(res.body);
   print(json);
   if (res.statusCode == 200) {
-    //var json = jsonDecode(res.body);
-
     return true;
   }
   return false;
@@ -70,11 +68,8 @@ Future<bool> deleteStageNote(User user, int noteID) async {
   var res = await http.delete(uri, headers: {
     'Authorization': ' Token ${user.token}',
   });
-  //print(res.body);
-  //print(json);
-  if (res.statusCode == 200 || res.statusCode == 204) {
-    // var json = jsonDecode(res.body);
 
+  if (res.statusCode == 200 || res.statusCode == 204) {
     return true;
   }
   return false;

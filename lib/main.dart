@@ -19,8 +19,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -28,11 +26,7 @@ class MyApp extends StatelessWidget {
         return UserCubit(User());
       },
       child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        
+        debugShowCheckedModeBanner: false,     
         home: FutureBuilder<Box>(
             future: Hive.openBox(tokenBox),
             builder: (context, snapshot) {

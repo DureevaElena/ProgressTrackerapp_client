@@ -24,13 +24,14 @@ class _UpdatePersonalPageState extends State<UpdatePersonalPage> {
   TextEditingController nicknameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController birthDateController = TextEditingController();
-  TextEditingController photoDateController = TextEditingController();
-
-  late User user;
-  File? _image;
-  final ImagePicker _picker = ImagePicker();
-
   DateTime? selectedDate;
+  late User user;
+
+  //File? _image;
+  //final ImagePicker _picker = ImagePicker();
+
+  File? _image;
+  final picker = ImagePicker();
 
 
   @override
@@ -40,10 +41,9 @@ class _UpdatePersonalPageState extends State<UpdatePersonalPage> {
     nicknameController.text = user.nickname ?? '';
     emailController.text = user.email ?? '';
     birthDateController.text = user.birthDate ?? '';
-    //photoDateController.text = user.profile_picture ?? '';
-    if (user.profile_picture != null) {
-      _image = File("${user.profile_picture}"); 
-    }    
+    //if (user.profile_picture != null) {
+    //  _image = File("${user.profile_picture}"); 
+    //}    
   }
 
   @override
@@ -51,7 +51,6 @@ class _UpdatePersonalPageState extends State<UpdatePersonalPage> {
     nicknameController.dispose();
     emailController.dispose();
     birthDateController.dispose();
-    //photoDateController.dispose();
     super.dispose();
   }
 
@@ -70,47 +69,22 @@ class _UpdatePersonalPageState extends State<UpdatePersonalPage> {
     }
   }
 
-  Future<void> _pickImage() async {
-  final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-
-  setState(() {
-    if (pickedFile != null) {
-      _image = File(pickedFile.path); // Обновляем выбранное изображение
-    } else {
-      print('No image selected.');
-    }
-  });
-  }
-
-  
   Future<void> _updateTextFields() async {
     user.nickname = nicknameController.text;
     user.email = emailController.text;
     user.birthDate = birthDateController.text;
-    
-   
   }
 
-  
-
   Future<void> _updateProfile() async {
-    await _updateTextFields(); // Обновляем текстовые поля
+    await _updateTextFields();
     bool profileUpdated = await updateUser(user);
     
-
-
     if (profileUpdated) {
       Navigator.of(context).pop();
       widget.user.nickname = nicknameController.text;
       widget.user.email = emailController.text;
       widget.user.birthDate = birthDateController.text;
-      //widget.user.profile_picture = photoDateController.text;
-      
-
-
-
-      setState(() {}); // Обновляем состояние в PersonalPage
-
+      setState(() {});
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -118,7 +92,7 @@ class _UpdatePersonalPageState extends State<UpdatePersonalPage> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Закрываем AlertDialog
+                Navigator.of(context).pop();
               },
               child: Text('OK'),
             ),
@@ -133,7 +107,7 @@ class _UpdatePersonalPageState extends State<UpdatePersonalPage> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context); // Закрываем AlertDialog
+                Navigator.pop(context);
               },
               child: Text('OK'),
             ),
@@ -146,68 +120,120 @@ class _UpdatePersonalPageState extends State<UpdatePersonalPage> {
 
 
 
-  Future<void> _showConfirmationDialog(BuildContext context) async {
-  return showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text("Подтвердите изменение фотографии"),
-        content: Text("Вы уверены, что хотите изменить фотографию профиля?"),
-        actions: <Widget>[
-          TextButton(
-            child: Text("Отмена"),
-            onPressed: () {
-              Navigator.of(context).pop(); // Закрыть диалоговое окно
-            },
-          ),
-          TextButton(
-            child: Text("Подтвердить"),
-            onPressed: () {
-              Navigator.of(context).pop(); // Закрыть диалоговое окно
-              _updatePHOTO(); // Вызвать функцию обновления профиля
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
+//   Future<void> _showConfirmationDialog(BuildContext context) async {
+//   return showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         title: Text("Подтвердите изменение фотографии"),
+//         content: Text("Вы уверены, что хотите изменить фотографию профиля?"),
+//         actions: <Widget>[
+//           TextButton(
+//             child: Text("Отмена"),
+//             onPressed: () {
+//               Navigator.of(context).pop();
+//             },
+//           ),
+//           TextButton(
+//             child: Text("Подтвердить"),
+//             onPressed: () {
+//               Navigator.of(context).pop();
+//               _updatePHOTO();
+//             },
+//           ),
+//         ],
+//       );
+//     },
+//   );
+// }
 
-Future<void> _updatePHOTO() async {
-  if (_image != null) {
-    bool imageUploaded = await _updateProfilePicture(_image!);
-    if (imageUploaded) {
-      setState(() {
-        _image = null; 
-      });
+// Future<void> _pickImage() async {
+//   final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+//   setState(() {
+//     if (pickedFile != null) {
+//       _image = File(pickedFile.path);
+//     } else {
+//       print('No image selected.');
+//     }
+//   });
+//   }
+
+// Future<void> _updatePHOTO() async {
+//   if (_image != null) {
+//     bool imageUploaded = await _updateProfilePicture(_image!);
+//     if (imageUploaded) {
+//       setState(() {
+//         _image = null; 
+//       });
+//     }
+//   }
+// }
+
+// Future<bool> _updateProfilePicture(File imageFile) async {
+//   var uri = Uri.parse("$baseUrl/user/profile/update/");
+//   var request = http.MultipartRequest('PUT', uri)
+//     ..headers['Authorization'] = 'Token ${user.token}'
+//     ..files.add(await http.MultipartFile.fromPath('profile_picture', imageFile.path));
+
+//   var response = await request.send();
+//   var responseData = await response.stream.toBytes();
+//   var responseString = String.fromCharCodes(responseData);
+//   var jsonResponse = jsonDecode(responseString);
+
+//   if (response.statusCode == 200) {
+//     setState(() {
+//       user.profile_picture = jsonResponse['profile_picture'];
+//     });
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+
+
+Future<void> _pickImage() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future<void> _uploadImage() async {
+    if (_image == null) return;
+
+    final uri = Uri.parse('$baseUrl/user/profile/update/');
+    var request = http.MultipartRequest('PUT', uri);
+    request.headers['Authorization'] = 'Token ${user.token}';
+    request.files.add(await http.MultipartFile.fromPath('profile_picture', _image!.path));
+
+    var response = await request.send();
+    if (response.statusCode == 200) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text("Фото успешно загружено"),
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text("Ошибка при загрузке фото"),
+        ),
+      );
     }
   }
-}
 
-Future<bool> _updateProfilePicture(File imageFile) async {
-  var uri = Uri.parse("$baseUrl/user/profile/update/");
-  var request = http.MultipartRequest('PUT', uri)
-    ..headers['Authorization'] = 'Token ${user.token}'
-    ..files.add(await http.MultipartFile.fromPath('profile_picture', imageFile.path));
-
-  var response = await request.send();
-  var responseData = await response.stream.toBytes();
-  var responseString = String.fromCharCodes(responseData);
-  var jsonResponse = jsonDecode(responseString);
-
-  if (response.statusCode == 200) {
-    setState(() {
-      user.profile_picture = jsonResponse['profile_picture'];
-    });
-    return true;
-  } else {
-    return false;
-  }
-}
 
 @override
 Widget build(BuildContext context) {
-  print("ЭТО КОНТРОЛЛЕР:   ${photoDateController.text}");
+
 
   return Scaffold(
     appBar: AppBar(
@@ -259,40 +285,34 @@ Widget build(BuildContext context) {
             Align(
               alignment: Alignment.center,
               child: GestureDetector(
-                onTap: _pickImage,
-                child: Container(
-                  height: 150,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 229, 229, 229),
-                    borderRadius: BorderRadius.circular(30),
-                    image: _image != null
-                        ? DecorationImage(
-                            image: FileImage(_image!),
-                            fit: BoxFit.cover,
-                          )
-                        : user.profile_picture != null
-                            ? DecorationImage(
-                                image: NetworkImage('$baseUrl${user.profile_picture}'),
-                                fit: BoxFit.cover,
-                              )
-                            : null,
+    onTap: _pickImage,
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        height: 150,
+        width: 150,
+        color: Colors.grey,
+        child: _image == null
+            ? const Center(
+                child: Text(
+                  'Нажми чтобы добавить фото',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
                   ),
-                  child: _image == null && user.profile_picture == null
-                      ? Icon(
-                          Icons.camera_alt_outlined,
-                          color: Colors.grey,
-                          size: 50,
-                        )
-                      : null,
                 ),
-              ),
+              )
+            : Image.file(_image!, fit: BoxFit.cover),
+      ),
+    ),
+  ),
             ),
             SizedBox(height: 25),
             Align(
               alignment: Alignment.bottomCenter,
               child: TextButton(
-                onPressed: _pickImage,
+                onPressed: _uploadImage,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 25, 25, 230),
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
@@ -300,7 +320,7 @@ Widget build(BuildContext context) {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -321,28 +341,13 @@ Widget build(BuildContext context) {
                 ),
               ),
             ),
-            SizedBox(height: 10), // Добавлен отступ между кнопками
-            Align(
-              alignment: Alignment.center,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton.icon(
-                    onPressed: () => _showConfirmationDialog(context), // Изменено на вызов функции без ()
-                    icon: Icon(Icons.check),
-                    label: Text('Подтвердить выбор фото'),
-                  ),
-                ],
-              ),
-            ),
-
               SizedBox(height: 50),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(left: 10),
                       child: Align(
                         alignment: Alignment.centerLeft,
@@ -357,7 +362,7 @@ Widget build(BuildContext context) {
                     ),
                     TextFormField(
                       controller: nicknameController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
                           borderSide: BorderSide(color: Colors.black, width: 2.0),
@@ -369,7 +374,7 @@ Widget build(BuildContext context) {
                       ),
                     ),
                     SizedBox(height: 15),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(left: 10),
                       child: Align(
                         alignment: Alignment.centerLeft,
@@ -384,7 +389,7 @@ Widget build(BuildContext context) {
                     ),
                     TextFormField(
                       controller: emailController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
                           borderSide: BorderSide(color: Colors.black, width: 2.0),
@@ -396,7 +401,7 @@ Widget build(BuildContext context) {
                       ),
                     ),
                     SizedBox(height: 15),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(left: 10),
                       child: Align(
                         alignment: Alignment.centerLeft,
@@ -413,7 +418,7 @@ Widget build(BuildContext context) {
                       readOnly: true,
                       controller: birthDateController,
                       onTap: () => _selectDate(context),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
                           borderSide: BorderSide(color: Colors.black, width: 2.0),
@@ -424,9 +429,6 @@ Widget build(BuildContext context) {
                         ),
                       ),
                     ),
-                    
-
-                    
                   ],
                 ),
               ),

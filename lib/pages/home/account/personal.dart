@@ -67,31 +67,32 @@ class _PersonalState extends State<PersonalPage> {
         child: Padding(
           padding: const EdgeInsets.all(30.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: 150,
-                width: 150,
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 229, 229, 229),
-                  borderRadius: BorderRadius.circular(30),
-                  image: profilePictureUrl.isNotEmpty
-                      ? DecorationImage(
-                          image: NetworkImage(profilePictureUrl),
-                          fit: BoxFit.cover,
+              // Фотография пользователя
+              Center(
+                child: Container(
+                  height: 150,
+                  width: 150,
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 229, 229, 229),
+                    borderRadius: BorderRadius.circular(30),
+                    image: profilePictureUrl.isNotEmpty
+                        ? DecorationImage(
+                            image: NetworkImage(profilePictureUrl),
+                            fit: BoxFit.cover,
+                          )
+                        : null,
+                  ),
+                  child: profilePictureUrl.isEmpty
+                      ? Icon(
+                          Icons.camera_alt_outlined,
+                          color: Colors.grey,
+                          size: 50,
                         )
                       : null,
                 ),
-                child: profilePictureUrl.isEmpty
-                    ? Icon(
-                        Icons.camera_alt_outlined,
-                        color: Colors.grey,
-                        size: 50,
-                      )
-                    : null,
               ),
-              SizedBox(height: 30),
-
-              // Остальной код вашего виджета...
 
               Align(
                 alignment: Alignment.bottomCenter,
@@ -121,209 +122,206 @@ class _PersonalState extends State<PersonalPage> {
                     ),
 
                   ),
-                ),
+                ),),
 
-                
+              SizedBox(height: 30),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Имя',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          "${user.nickname}",
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(height: 15),
+
+                  // Дата рождения
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Дата рождения',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          "${user.birthDate}",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(height: 15),
+
+                  // Почта
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Почта',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          "${user.email}",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 20),
+
+              // Кнопка "Текущие цели"
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => CurrentNotePage(),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 25, 25, 230),
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                  child: const Text(
+                    'Текущие цели',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 10),
+
+              // Кнопка "Просроченные цели"
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => OverdateNotePage(),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 25, 25, 230),
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                  child: const Text(
+                    'Просроченные цели',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 10),
+
+              // Кнопка "Завершенные цели"
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => EndNotePage(),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 25, 25, 230),
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                  child: const Text(
+                    'Завершенные цели',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
               ),
 
               SizedBox(height: 30),
 
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Text(
-                      'Имя',
-                      style: TextStyle(
-                        fontSize: 16,
+              // Кнопка "Выйти"
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: IconButton(
+                  onPressed: () async {
+                    await logOut(user.token!);
+                    Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => SignInPage()),
+                      (route) => false,
+                    );
+                  },
+                  icon: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.exit_to_app,
                         color: Colors.black,
                       ),
-                    ),
-                  ),
-                  SizedBox(height: 5),
-
-                  Text(
-                    "${user.nickname}",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-
-                  SizedBox(height: 15),
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Text(
-                      'Дата рождения',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
+                      SizedBox(width: 5),
+                      Text(
+                        'Выйти',
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 5),
-
-                  Text(
-                    "${user.birthDate}",
-                    style: TextStyle(fontSize: 20),
-                  ),
-
-                  SizedBox(height: 15),
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Text(
-                      'Почта',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-
-    SizedBox(height: 5),
-
-    Text(
-      "${user.email}",
-      style: TextStyle(fontSize: 20),
-    ),
-  ],
-),
-
-
-            SizedBox(height: 20,),
-
-            Row(
-              children: [
-                Align(alignment: Alignment.bottomLeft,
-                  child: TextButton(
-                      onPressed: () {
-                      Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => CurrentNotePage(),
-                            ),
-                          );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 25, 25, 230),
-                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                    ),
-                    child: const Text(
-                      'Текущие цели',
-                     style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                ),
-                
-              ],
-            ),
-
-            SizedBox(height: 10,),
-            Row(
-              children: [
-                Align(alignment: Alignment.bottomLeft,
-                  child: TextButton(
-                      onPressed: () {
-                      Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => OverdateNotePage(),
-                            ),
-                          );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 25, 25, 230),
-                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                    ),
-                    child: const Text(
-                      'Просроченные цели',
-                     style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                ),
-                
-              ],
-            ),
-
-            SizedBox(height: 10,),
-
-            Row(
-              children: [
-                Align(alignment: Alignment.bottomLeft,
-                  child: TextButton(
-                      onPressed: () {
-                      Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => EndNotePage(),
-                            ),
-                          );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 25, 25, 230),
-                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                    ),
-                    child: const Text(
-                      'Завершенные цели',
-                     style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                ),
-                
-              ],
-            ),
-
-            
-
-            SizedBox(height: 30,),
-
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: IconButton(
-                 onPressed: () async {
-                  await logOut(user.token!);
-                  Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => SignInPage()),
-                    (route) => false);               
-                },
-                icon: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.exit_to_app,
-                      color: Colors.black,
-                    ),
-                    SizedBox(width: 5),
-                    Text(
-                      'Выйти',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
                 ),
               ),
-            ),  
-          ],
-        ), 
-      ),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
-      

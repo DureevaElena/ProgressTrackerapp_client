@@ -10,9 +10,6 @@ import 'package:simpleengineering/pages/home/admin/admin_users.dart';
 import 'package:simpleengineering/pages/home/admin/adminhome.dart';
 import 'package:simpleengineering/pages/home/home.dart';
 
-import 'package:simpleengineering/there.dart';
-import 'package:simpleengineering/widgets/fields.dart';
-import 'package:simpleengineering/widgets/texxt_button.dart';
 
 import 'register_page.dart';
 
@@ -29,13 +26,11 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -76,8 +71,8 @@ class _SignInPageState extends State<SignInPage> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(
-          horizontal: defaultMargin,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 30.0,
         ),
         children: [
           SizedBox(
@@ -187,7 +182,7 @@ class _SignInPageState extends State<SignInPage> {
                 } else if (authRes.runtimeType == User) {
                   User user = authRes;
                   context.read<UserCubit>().emit(user);
-                  if ( user.is_superuser == true || user.email == "edureeva@yandex.ru") {
+                  if ( user.is_superuser == true || user.email == "admin@admin.com") {
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) {
                         return AdminPage();
@@ -239,12 +234,7 @@ class _SignInPageState extends State<SignInPage> {
                     );
                   },
                   child: Text(
-                    "Don't have an account? Register now.",
-                    style: whiteTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: semiBold,
-                    ),
-                  ),
+                    ""),
                 ),
               ],
             ),

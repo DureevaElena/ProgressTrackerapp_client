@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-const String baseUrl = "http://10.0.2.2:8000"; // ваш базовый URL
+import 'package:simpleengineering/constants.dart';
+
 
 class ChangePasswordPage extends StatefulWidget {
   final String encodedPk;
@@ -34,7 +35,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Пароль успешно изменен')),
         );
-        Navigator.pop(context); // Вернуться на предыдущий экран
+        Navigator.pop(context); 
       } else {
         final responseData = jsonDecode(response.body);
         if (responseData.containsKey('message')) {

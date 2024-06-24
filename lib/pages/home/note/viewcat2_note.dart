@@ -28,24 +28,14 @@ class _CatViewNoteScreenState extends State<CatViewNoteScreen> {
     noteId = widget.note.id;
   }
 
-  String getStatusText(int status) {
-  switch (status) {
-    case 1:
-      return "Текущие";
-    case 2:
-      return "Просроченные";
-    case 3:
-      return "Завершенные";
-    default:
-      return "Неизвестный статус";
-  }
-  } 
+
 
 
   @override
   Widget build(BuildContext context) {
     Note noteetap = widget.note;
-    
+    String profilePictureUrl = widget.note.note_picturetodo ?? '';
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
@@ -67,14 +57,12 @@ class _CatViewNoteScreenState extends State<CatViewNoteScreen> {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(40.0),
           child: Column(
-            // Оборачиваем Row в Column
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextButton(
                     onPressed: () {
-                      // Действия для кнопки "Описание"
                     },
                     child: const Text(
                       'Описание',
@@ -86,11 +74,11 @@ class _CatViewNoteScreenState extends State<CatViewNoteScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      // Navigator.of(context).push(
-                      //   MaterialPageRoute(
-                      //     builder: (context) => CatEtapNoteScreen(noteId: noteId, note: noteetap,),
-                      //   ),
-                      // );
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => CatEtapNoteScreen(noteId: noteId, note: noteetap,),
+                        ),
+                      );
                     },
                     child: const Text(
                       'Этапы',
@@ -121,9 +109,22 @@ class _CatViewNoteScreenState extends State<CatViewNoteScreen> {
                 height: 150,
                 width: 150,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 229, 229, 229),
+                  color: Color.fromARGB(255, 229, 229, 229),
                   borderRadius: BorderRadius.circular(30),
+                  image: profilePictureUrl.isNotEmpty
+                      ? DecorationImage(
+                          image: NetworkImage(profilePictureUrl),
+                          fit: BoxFit.cover,
+                        )
+                      : null,
                 ),
+                child: profilePictureUrl.isEmpty
+                    ? const Icon(
+                        Icons.camera_alt_outlined,
+                        color: Colors.grey,
+                        size: 50,
+                      )
+                    : null,
               ),
             ),
             SizedBox(height: 25),
@@ -150,15 +151,10 @@ class _CatViewNoteScreenState extends State<CatViewNoteScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 15),
-                Text(
-                  getStatusText(widget.note.statustodo),
-                  style: TextStyle(fontSize: 20),
-                )
+                
               ],
             ),
             SizedBox(height: 50),
-            
           ],
         ),
       ),

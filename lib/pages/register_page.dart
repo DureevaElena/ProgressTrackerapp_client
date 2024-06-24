@@ -139,7 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),),
               TextFormField(
                 controller: emailController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     borderSide: BorderSide(color: Colors.black,width: 2.0),
@@ -165,7 +165,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),),
               TextFormField(
                 controller: passwordController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     borderSide: BorderSide(color: Colors.black,width: 2.0),
@@ -189,7 +189,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),),
               TextFormField(
                 controller: comfirmPassword,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     borderSide: BorderSide(color: Colors.black,width: 2.0),
